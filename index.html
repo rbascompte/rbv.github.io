@@ -1,389 +1,222 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electrotècnia - CFGM IEA</title>
-    <style>
-        :root {
-            --primary: #0056b3;
-            --primary-dark: #003d80;
-            --secondary: #f4f6f9;
-            --text: #333;
-            --light-bg: #ffffff;
-            --border: #e0e0e0;
-            --accent: #e67e22;
-        }
+<!-- INICI SECCIÓ UT1: EL CORRENT ELÈCTRIC -->
+<section id="ut1" class="ut-container">
+  <style>
+    .ut-container {
+      font-family: system-ui, -apple-system, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .ut-title {
+      color: #1a202c;
+      border-bottom: 3px solid #3182ce;
+      padding-bottom: 8px;
+      margin-top: 0;
+    }
+    .ut-block {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .ut-block h3 {
+      color: #2b6cb0;
+      margin-top: 0;
+      border-bottom: 1px solid #edf2f7;
+      padding-bottom: 6px;
+    }
+    .ut-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .ut-card {
+      background: #f7fafc;
+      border-left: 4px solid #3182ce;
+      padding: 16px;
+      border-radius: 4px;
+    }
+    .ut-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .ut-table th, .ut-table td {
+      border: 1px solid #cbd5e0;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    .ut-table th {
+      background-color: #ebf8ff;
+      color: #2b6cb0;
+    }
+    .ut-activity {
+      background: #fffaf0;
+      border: 1px solid #feebc8;
+      border-left: 4px solid #dd6b20;
+      padding: 16px;
+      border-radius: 4px;
+      margin: 16px 0;
+    }
+    .ut-activity-title {
+      font-weight: bold;
+      color: #c05621;
+      margin-bottom: 6px;
+    }
+    .formula-box {
+      background: #edf2f7;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-family: monospace;
+      font-weight: bold;
+      display: inline-block;
+      margin: 4px 0;
+    }
+  </style>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--secondary);
-            color: var(--text);
-            line-height: 1.6;
-        }
+  <h1 class="ut-title">UT1: El Corrent Elèctric</h1>
 
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 1rem;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+  <!-- BLOC 1: FONAMENTS FÍSICS -->
+  <div class="ut-block">
+    <h3>1. Introducció i Fonaments Físics</h3>
+    <p>L'electricitat és una forma d'energia fàcilment transportable a través de cables i transformable en llum, calor, moviment o energia química[cite: 2]. Atès que no és viable econòmicament emmagatzemar-la a gran escala, s'ha de generar la mateixa quantitat que es consumeix[cite: 2].</p>
+    
+    <p><strong>Estructura de la Matèria i l'Àtom:</strong> La matèria està formada per àtoms composts per un nucli (protons amb càrrega positiva i neutrons sense càrrega) i electrons (càrrega negativa) orbitant al seu voltant[cite: 2]. En estat natural, un àtom és elèctricament neutre[cite: 2]. La capa més allunyada del nucli s'anomena <strong>capa de valència</strong>, i el nombre d'electrons que conté determina el comportament elèctric del material[cite: 2].</p>
 
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-        }
+    <div class="ut-grid">
+      <div class="ut-card">
+        <strong>Conductors (1 a 3 e⁻ de valència):</strong> Permeten el moviment de càrregues amb facilitat[cite: 2]. Exemples: metalls (coure, plata, or, alumini, ferro), aigua i solucions salines[cite: 2].
+      </div>
+      <div class="ut-card">
+        <strong>Aïllants (5 a 7 e⁻ de valència):</strong> Impedeixen el pas de càrregues elèctriques[cite: 2]. Exemples: fusta, ceràmica, vidre, plàstics, cautxú, tefló[cite: 2].
+      </div>
+      <div class="ut-card">
+        <strong>Semiconductors (4 e⁻ de valència):</strong> Permeten o impedeixen el pas d'energia segons les condicions[cite: 2]. Utilitzats en electrònica (silici, germani) per a xips, díodes i transistors[cite: 2].
+      </div>
+    </div>
 
-        header p {
-            margin-top: 0.5rem;
-            opacity: 0.9;
-        }
+    <p><strong>Càrrega Elèctrica i Llei de Coulomb:</strong> La càrrega elèctrica es mesura en Coulombs (C), on <span class="formula-box">1 C = 6.24 · 10¹⁸ e⁻</span>[cite: 2]. Quan les càrregues estan en repòs tenim electricitat estàtica[cite: 2]. Les càrregues del mateix signe es repelen i les de signe contrari s'atreuen segons la Llei de Coulomb[cite: 2]:</p>
+    <div class="formula-box">F = k · (Q₁ · Q₂) / d² &nbsp;&nbsp;|&nbsp;&nbsp; k = 8.987 · 10⁹ N·m²/C²</div>
 
-        nav {
-            background-color: var(--primary-dark);
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 0.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitat 1</div>
+      Si un determinat material té un excés de 25.2 · 10¹⁸ electrons, quants Coulombs de càrrega negativa té[cite: 2]?
+    </div>
+  </div>
 
-        nav button {
-            background: none;
-            border: none;
-            color: white;
-            padding: 0.7rem 1.2rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.3s;
-        }
+  <!-- BLOC 2: MAGNITUDS I LLEIS ELÈCTRIQUES -->
+  <div class="ut-block">
+    <h3>2. Magnituds, Lleis i Circuits Elèctrics</h3>
+    
+    <p><strong>Intensitat (I):</strong> Quantitat de càrrega que circula per un conductor per unitat de temps[cite: 2]. Es mesura en Ampers (A), on <span class="formula-box">1 A = 1 C / 1 s</span>[cite: 2].
+    <br><em>Sentit real:</em> del pol negatiu al positiu[cite: 2]. <em>Sentit convencional (usat en càlculs):</em> del pol positiu al negatiu[cite: 2].</p>
 
-        nav button:hover, nav button.active {
-            background-color: rgba(255, 255, 255, 0.2);
-            font-weight: bold;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitats 2 i 3</div>
+      <ul>
+        <li><strong>Activitat 2:</strong> Si es té un corrent de 10 A, quants electrons circulen en un segon[cite: 2]? I en un minut[cite: 2]?</li>
+        <li><strong>Activitat 3:</strong> Quina intensitat circula per un conductor si per ell flueix una càrrega de 4 Coulombs en un temps de 2 segons[cite: 2]?</li>
+      </ul>
+    </div>
 
-        main {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+    <p><strong>Voltatge / Tensió (V):</strong> Causant del moviment dels electrons, mesurat entre dos punts en Volts (V)[cite: 2]. Pot esser Corrent Continu (CC, valor constant) o Corrent Altern (CA, varia periòdicament)[cite: 2].</p>
+    
+    <p><strong>Resistència (R):</strong> Oposició al pas del corrent elèctric, mesurada en Ohms (Ω)[cite: 2].</p>
 
-        .section {
-            display: none;
-            background: var(--light-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+    <p><strong>Llei d'Ohm:</strong> Formulada per Georg Simon Ohm[cite: 2]:</p>
+    <div class="formula-box">V = R · I</div>
 
-        .section.active {
-            display: block;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitat 4</div>
+      <ul>
+        <li>Tenim un circuit amb R = 6 Ω connectat a 12 V. Quin corrent hi circularà[cite: 2]?</li>
+        <li>Si per R = 16 Ω hi circulen 3 A, a quin voltatge està connectada[cite: 2]?</li>
+        <li>En un circuit hi circulen 10 A quan està connectat a 25 V. Quina resistència té[cite: 2]?</li>
+      </ul>
+    </div>
 
-        h2 {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-top: 0;
-        }
+    <p><strong>Múltiples i Submúltiples:</strong></p>
+    <table class="ut-table">
+      <thead>
+        <tr><th>Prefix</th><th>Símbol</th><th>Notació</th><th>Factor</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tera</td><td>T</td><td>10¹²</td><td>x 1.000.000.000.000</td></tr>
+        <tr><td>Giga</td><td>G</td><td>10⁹</td><td>x 1.000.000.000</td></tr>
+        <tr><td>Mega</td><td>M</td><td>10⁶</td><td>x 1.000.000</td></tr>
+        <tr><td>Kilo</td><td>k</td><td>10³</td><td>x 1.000</td></tr>
+        <tr><td>mili</td><td>m</td><td>10⁻³</td><td>: 1.000</td></tr>
+        <tr><td>micro</td><td>µ</td><td>10⁻⁶</td><td>: 1.000.000</td></tr>
+        <tr><td>nano</td><td>n</td><td>10⁻⁹</td><td>: 1.000.000.000</td></tr>
+        <tr><td>pico</td><td>p</td><td>10⁻¹²</td><td>: 1.000.000.000.000</td></tr>
+      </tbody>
+    </table>
 
-        h3 {
-            color: var(--primary-dark);
-            margin-top: 1.5rem;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitats 5 i 6</div>
+      <ul>
+        <li><strong>Activitat 5:</strong> Tenim un circuit amb R = 5 kΩ per on circulen 2 mA. A quin voltatge està connectat[cite: 2]?</li>
+        <li><strong>Activitat 6:</strong> Realitzar conversions d'unitats (ex: 2700 µA a Ω, 56 kΩ a Ω, 12 MΩ a kΩ, etc.)[cite: 2].</li>
+      </ul>
+    </div>
+  </div>
 
-        ul, ol {
-            padding-left: 1.5rem;
-        }
+  <!-- BLOC 3: POTÈNCIA, ENERGIA I RENDIMENT -->
+  <div class="ut-block">
+    <h3>3. Potència, Energia i Rendiment</h3>
+    
+    <p><strong>Potència Elèctrica (P):</strong> Capacitat per transformar energia per unitat de temps, mesurada en Watts (W)[cite: 2]. Equivalència: <span class="formula-box">1 CV = 735 W</span>[cite: 2].</p>
+    <div class="formula-box">P = V · I = R · I² = V² / R</div>
 
-        li {
-            margin-bottom: 0.5rem;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitats 7 i 8</div>
+      <ul>
+        <li><strong>Activitat 7:</strong> Un cotxe elèctric de 90 kW, quants cavalls de vapor (CV) té[cite: 2]?</li>
+        <li><strong>Activitat 8:</strong>
+          <br>- Resistència de 20 Ω amb 5 A: quina potència dissipa[cite: 2]?
+          <br>- Estufa de 1500 W a 230 V: quina intensitat hi circula[cite: 2]?
+          <br>- Bombeta de 20 W amb R = 7.2 Ω: a quin voltatge s'ha de connectar[cite: 2]?
+        </li>
+      </ul>
+    </div>
 
-        .img-container {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
+    <p><strong>Efecte Joule:</strong> Transformació inevitable de part de l'energia elèctrica en calor en passar per un conductor[cite: 2].</p>
 
-        .img-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+    <p><strong>Energia Elèctrica (E):</strong> Potència consumida o subministrada durant un cert temps[cite: 2]. Es mesura en Joules (J) o kilowatt-hora (kWh)[cite: 2].</p>
+    <div class="formula-box">E = P · t &nbsp;&nbsp;|&nbsp;&nbsp; 1 kWh = 3.600.000 J</div>
 
-        .img-caption {
-            font-size: 0.88rem;
-            color: #666;
-            margin-top: 0.4rem;
-            font-style: italic;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitat 9</div>
+      <ul>
+        <li>Bombeta de 20 W encesa 6 h/dia: quanta energia diària consumeix en J i en kWh[cite: 2]?</li>
+        <li>Televisor a 230 V i 0.7 A encès 4 hores: calcula la potència i l'energia consumida[cite: 2].</li>
+      </ul>
+    </div>
 
-        .formula-box {
-            background-color: #eef6ff;
-            border-left: 4px solid var(--primary);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 0 4px 4px 0;
-        }
+    <p><strong>Rendiment (η):</strong> Relació entre la potència útil obtinguda i la potència elèctrica absorbida[cite: 2]:</p>
+    <div class="formula-box">η = P_útil / P_absorbida</div>
 
-        .calc-box {
-            background: #f9f9f9;
-            border: 1px solid var(--border);
-            padding: 1.5rem;
-            border-radius: 6px;
-            margin-top: 1.5rem;
-        }
+    <div class="ut-activity">
+      <div class="ut-activity-title">Activitat 10</div>
+      <ul>
+        <li>Motor amb P_mecànica = 750 W i P_elèctrica = 1110 W: quin és el seu rendiment[cite: 2]?</li>
+        <li>Motor amb η = 70% que entrega 500 W mecànics: quina potència elèctrica absorbeix[cite: 2]?</li>
+      </ul>
+    </div>
+  </div>
 
-        .calc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .calc-field label {
-            display: block;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-            font-weight: bold;
-        }
-
-        .calc-field input {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .calc-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .calc-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        #calc-result {
-            margin-top: 1rem;
-            font-weight: bold;
-            color: var(--primary-dark);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            color: #777;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Electrotècnia</h1>
-        <p>1r de Cicle Formatiu de Grau Mitjà - IEA</p>
-    </header>
-
-    <nav>
-        <button class="tab-btn active" onclick="openTab(event, 'home')">Inici</button>
-        <button class="tab-btn" onclick="openTab(event, 'ut0')">UT0: Repàs de Matemàtiques</button>
-        <button class="tab-btn" onclick="openTab(event, 'ut1')">UT1: El Corrent Elèctric</button>
-    </nav>
-
-    <main>
-        <!-- SECCIÓ INICI -->
-       <!-- SECCIÓ INICI RENOVADA -->
-        <section id="home" class="section active">
-            <div style="text-align: center; margin-bottom: 2.5rem;">
-                <h2 style="border: none; font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);">
-                    ⚡ Benvinguts a Electrotècnia
-                </h2>
-                <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto;">
-                    Plataforma d'aprenentatge digital per al curs de 1r de Cicle Formatiu de Grau Mitjà (IEA). Explora el temari, esquemes visuals i eines interactives.
-                </p>
-            </div>
-
-            <!-- TARJETES D'ACCÉS RÀPID -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-                
-                <!-- Card UT0 -->
-                <div style="background: white; border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📐</div>
-                    <h3 style="margin-top: 0; color: var(--primary);">UT0: Repàs de Matemàtiques</h3>
-                    <p style="color: #666; font-size: 0.95rem;">
-                        Fonaments matemàtics essencials: aïllament d'incògnites, notació científica, potències de 10 i conversions d'unitats.
-                    </p>
-                    <button class="calc-btn" onclick="openTab(event, 'ut0')" style="margin-top: 1rem; width: 100%;">
-                        Explorar UT0 &rarr;
-                    </button>
-                </div>
-
-                <!-- Card UT1 -->
-                <div style="background: white; border: 1px solid var(--border); border-top: 4px solid #27ae60; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💡</div>
-                    <h3 style="margin-top: 0; color: #27ae60;">UT1: El Corrent Elèctric</h3>
-                    <p style="color: #666; font-size: 0.95rem;">
-                        Magnituds elèctriques bàsiques ($V, I, R$), circuit elèctric, Llei d'Ohm, potència, energia i calculadora en línia.
-                    </p>
-                    <button class="calc-btn" onclick="openTab(event, 'ut1')" style="background-color: #27ae60; margin-top: 1rem; width: 100%;">
-                        Explorar UT1 &rarr;
-                    </button>
-                </div>
-
-            </div>
-
-            <!-- BLOC D'EINES RÀPIDES -->
-            <div style="background: linear-gradient(135deg, #0056b3, #003d80); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
-                <h3 style="color: white; margin-top: 0;">🛠️ Eina Destacada</h3>
-                <p style="margin-bottom: 1rem; opacity: 0.9;">
-                    Necessites resoldre exercicis de la Llei d'Ohm de forma ràpida?
-                </p>
-                <button class="calc-btn" onclick="openTab(event, 'ut1')" style="background-color: var(--accent); border: none; padding: 0.8rem 1.5rem; font-size: 1rem;">
-                    Obrir Calculadora d'Ohm
-                </button>
-            </div>
-        </section>
-
-        <!-- SECCIÓ UT0 -->
-        <section id="ut0" class="section">
-            <h2>UT0 - Repàs Previ de Matemàtiques</h2>
-            <p>Abans de començar amb l'estudi dels circuits elèctrics, és essencial dominar certs conceptes matemàtics bàsics:</p>
-            
-            <h3>1. Aïllament d'Incògnites</h3>
-            <p>Saber transposar termes a les equacions és fonamental per calcular diferents magnituds elèctriques.</p>
-            <ul>
-                <li>Lo que està sumant passa restant: A + B = C &rarr; A = C - B</li>
-                <li>Lo que està multiplicant passa dividint: I &middot; R = V &rarr; I = V / R</li>
-            </ul>
-
-            <h3>2. Notació Científica i Prefixos</h3>
-            <p>En electrotècnia treballem amb valors molt grans o molt petits:</p>
-            <ul>
-                <li><strong>Kilo (k):</strong> 10³ = 1.000 (ex: 1 k&Omega; = 1.000 &Omega;)</li>
-                <li><strong>Mega (M):</strong> 10⁶ = 1.000.000</li>
-                <li><strong>Mili (m):</strong> 10⁻³ = 0,001 (ex: 1 mA = 0,001 A)</li>
-                <li><strong>Micro (&mu;):</strong> 10⁻⁶ = 0,000001</li>
-            </ul>
-        </section>
-
-        <!-- SECCIÓ UT1 -->
-        <section id="ut1" class="section">
-            <h2>UT1 - El Corrent Elèctric</h2>
-            
-            <h3>1. Concepte de Corrent Elèctric</h3>
-            <p>El corrent elèctric és el flux ordenat d'electrons a través d'un material conductor. Perquè hi hagi circulació de corrent cal un circuit tancat i una diferència de potencial (tensió) que impulsi els electrons.</p>
-            
-            <div class="img-container">
-                <img src="img/esquema_electric.jpg.png" alt="Esquema d'un circuit elèctric bàsic">
-                <div class="img-caption">Figura 1: Esquema bàsic d'un circuit elèctric amb font de tensió, conductor i receptor.</div>
-            </div>
-
-            <h3>2. Magnituds Elèctriques Fonamentals</h3>
-            <ul>
-                <li><strong>Tensió / Voltatge (V):</strong> És la diferència de potencial entre dos punts. S'expressa en <strong>Volts (V)</strong>.</li>
-                <li><strong>Intensitat de corrent (I):</strong> És la quantitat de càrrega elèctrica que travessa una secció del conductor per unitat de temps. S'expressa en <strong>Amperes (A)</strong>.</li>
-                <li><strong>Resistència elèctrica (R):</strong> És l'oposició que ofereix un material al pas del corrent elèctric. S'expressa en <strong>Ohms (&Omega;)</strong>.</li>
-            </ul>
-
-            <h3>3. La Llei d'Ohm</h3>
-            <p>Estableix la relació directa entre la tensió, la intensitat i la resistència d'un circuit elèctric:</p>
-            
-            <div class="formula-box">
-                <p><strong>Fórmula general:</strong> V = I &middot; R</p>
-                <p>D'aquí podem derivar:</p>
-                <ul>
-                    <li>I = V / R</li>
-                    <li>R = V / I</li>
-                </ul>
-            </div>
-
-            <div class="img-container">
-                <img src="img/triangle-ohm.jpg.png" alt="Triangle de la Llei d'Ohm">
-                <div class="img-caption">Figura 2: Regla mnemotècnica del triangle de la Llei d'Ohm.</div>
-            </div>
-
-            <h3>4. Potència i Energia Elèctrica</h3>
-            <p>La <strong>potència elèctrica (P)</strong> indica la quantitat d'energia elèctrica consumida o transformada per unitat de temps. S'expressa en <strong>Watts (W)</strong>.</p>
-            <div class="formula-box">
-                <p><strong>Fórmula de la Potència:</strong> P = V &middot; I</p>
-            </div>
-            <p>L'<strong>energia elèctrica (E)</strong> és el treball realitzat pel corrent en un temps determinat (t). Normalment es mesura en <strong>Joules (J)</strong> o en <strong>Kilowatts-hora (kWh)</strong>.</p>
-            <div class="formula-box">
-                <p><strong>Fórmula de l'Energia:</strong> E = P &middot; t</p>
-            </div>
-
-            <h3>5. Calculadora de la Llei d'Ohm</h3>
-            <div class="calc-box">
-                <p>Introdueix dos valors qualsevol per calcular el tercer:</p>
-                <div class="calc-grid">
-                    <div class="calc-field">
-                        <label for="calc-v">Tensió (V):</label>
-                        <input type="number" id="calc-v" placeholder="ex: 12">
-                    </div>
-                    <div class="calc-field">
-                        <label for="calc-i">Intensitat (A):</label>
-                        <input type="number" id="calc-i" placeholder="ex: 2">
-                    </div>
-                    <div class="calc-field">
-                        <label for="calc-r">Resistència (&Omega;):</label>
-                        <input type="number" id="calc-r" placeholder="ex: 6">
-                    </div>
-                </div>
-                <button class="calc-btn" onclick="calcularOhm()">Calcular</button>
-                <div id="calc-result"></div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Electrotècnia - CFGM IEA | Allotjat a GitHub Pages</p>
-    </footer>
-
-    <script>
-        function openTab(evt, tabName) {
-            let sections = document.querySelectorAll('.section');
-            sections.forEach(sec => sec.classList.remove('active'));
-
-            let buttons = document.querySelectorAll('.tab-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            document.getElementById(tabName).classList.add('active');
-            evt.currentTarget.classList.add('active');
-        }
-
-        function calcularOhm() {
-            let v = parseFloat(document.getElementById('calc-v').value);
-            let i = parseFloat(document.getElementById('calc-i').value);
-            let r = parseFloat(document.getElementById('calc-r').value);
-            let res = document.getElementById('calc-result');
-
-            if (!isNaN(v) && !isNaN(i) && isNaN(r)) {
-                res.innerText = `Resistència (R) = ${(v / i).toFixed(2)} Ω`;
-            } else if (!isNaN(v) && isNaN(i) && !isNaN(r)) {
-                res.innerText = `Intensitat (I) = ${(v / r).toFixed(2)} A`;
-            } else if (isNaN(v) && !isNaN(i) && !isNaN(r)) {
-                res.innerText = `Tensió (V) = ${(i * r).toFixed(2)} V`;
-            } else {
-                res.innerText = "Si us plau, omple exactament dos camps per calcular el tercer.";
-            }
-        }
-    </script>
-</body>
-</html>
+  <!-- BLOC 4: EL SISTEMA ELÈCTRIC -->
+  <div class="ut-block">
+    <h3>4. El Sistema Elèctric</h3>
+    <ul>
+      <li><strong>Generació:</strong> Transformació d'energia mecànica (turbines impulsades per aigua, vapor o vent) en elèctrica mitjançant alternadors en corrent altern[cite: 2].</li>
+      <li><strong>Transport i Distribució:</strong> L'electricitat s'eleva a Alta Tensió mitjançant transformadors per reduir les pèrdues per efecte Joule durant el transport a llargues distàncies[cite: 2]. Posteriorment se redueix la tensió en centres de transformació per a ús industrial i residencial[cite: 2].</li>
+    </ul>
+  </div>
+</section>
+<!-- FI SECCIÓ UT1 -->
