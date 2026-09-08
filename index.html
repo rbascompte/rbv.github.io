@@ -209,14 +209,56 @@
 
     <main>
         <!-- SECCIÓ INICI -->
+       <!-- SECCIÓ INICI RENOVADA -->
         <section id="home" class="section active">
-            <h2>Pàgina Principal</h2>
-            <p>Benvingut/da al portal de l'assignatura d'<strong>Electrotècnia</strong>. En aquest espai trobaràs el material teòric, esquemes i eines pràctiques per seguir el curs.</p>
-            <h3>Unitats de la secció:</h3>
-            <ul>
-                <li><strong>UT0: Repàs de Matemàtiques</strong> — Aïllament d'incògnites, notació científica i conversió d'unitats.</li>
-                <li><strong>UT1: El Corrent Elèctric</strong> — Magnituds fonamentals, Llei d'Ohm, energia, potència i efecte Joule.</li>
-            </ul>
+            <div style="text-align: center; margin-bottom: 2.5rem;">
+                <h2 style="border: none; font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary);">
+                    ⚡ Benvinguts a Electrotècnia
+                </h2>
+                <p style="font-size: 1.1rem; color: #555; max-width: 700px; margin: 0 auto;">
+                    Plataforma d'aprenentatge digital per al curs de 1r de Cicle Formatiu de Grau Mitjà (IEA). Explora el temari, esquemes visuals i eines interactives.
+                </p>
+            </div>
+
+            <!-- TARJETES D'ACCÉS RÀPID -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                
+                <!-- Card UT0 -->
+                <div style="background: white; border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">📐</div>
+                    <h3 style="margin-top: 0; color: var(--primary);">UT0: Repàs de Matemàtiques</h3>
+                    <p style="color: #666; font-size: 0.95rem;">
+                        Fonaments matemàtics essencials: aïllament d'incògnites, notació científica, potències de 10 i conversions d'unitats.
+                    </p>
+                    <button class="calc-btn" onclick="openTab(event, 'ut0')" style="margin-top: 1rem; width: 100%;">
+                        Explorar UT0 &rarr;
+                    </button>
+                </div>
+
+                <!-- Card UT1 -->
+                <div style="background: white; border: 1px solid var(--border); border-top: 4px solid #27ae60; border-radius: 8px; padding: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💡</div>
+                    <h3 style="margin-top: 0; color: #27ae60;">UT1: El Corrent Elèctric</h3>
+                    <p style="color: #666; font-size: 0.95rem;">
+                        Magnituds elèctriques bàsiques ($V, I, R$), circuit elèctric, Llei d'Ohm, potència, energia i calculadora en línia.
+                    </p>
+                    <button class="calc-btn" onclick="openTab(event, 'ut1')" style="background-color: #27ae60; margin-top: 1rem; width: 100%;">
+                        Explorar UT1 &rarr;
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- BLOC D'EINES RÀPIDES -->
+            <div style="background: linear-gradient(135deg, #0056b3, #003d80); color: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                <h3 style="color: white; margin-top: 0;">🛠️ Eina Destacada</h3>
+                <p style="margin-bottom: 1rem; opacity: 0.9;">
+                    Necessites resoldre exercicis de la Llei d'Ohm de forma ràpida?
+                </p>
+                <button class="calc-btn" onclick="openTab(event, 'ut1')" style="background-color: var(--accent); border: none; padding: 0.8rem 1.5rem; font-size: 1rem;">
+                    Obrir Calculadora d'Ohm
+                </button>
+            </div>
         </section>
 
         <!-- SECCIÓ UT0 -->
