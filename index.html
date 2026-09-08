@@ -1,276 +1,584 @@
-<!-- INICI SECCIÓ UT1: EL CORRENT ELÈCTRIC -->
-<section id="ut1" class="ut-container">
-  <style>
-    .ut-container {
-      font-family: system-ui, -apple-system, sans-serif;
-      color: #2d3748;
-      line-height: 1.6;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .ut-title {
-      color: #1a202c;
-      border-bottom: 3px solid #3182ce;
-      padding-bottom: 8px;
-      margin-top: 0;
-    }
-    .ut-block {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .ut-block h3 {
-      color: #2b6cb0;
-      margin-top: 0;
-      border-bottom: 1px solid #edf2f7;
-      padding-bottom: 6px;
-    }
-    .ut-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-      margin: 16px 0;
-    }
-    .ut-card {
-      background: #f7fafc;
-      border-left: 4px solid #3182ce;
-      padding: 16px;
-      border-radius: 4px;
-    }
-    .ut-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-    }
-    .ut-table th, .ut-table td {
-      border: 1px solid #cbd5e0;
-      padding: 10px 14px;
-      text-align: left;
-    }
-    .ut-table th {
-      background-color: #ebf8ff;
-      color: #2b6cb0;
-    }
-    .ut-activity {
-      background: #fffaf0;
-      border: 1px solid #feebc8;
-      border-left: 4px solid #dd6b20;
-      padding: 16px;
-      border-radius: 4px;
-      margin: 16px 0;
-    }
-    .ut-activity-title {
-      font-weight: bold;
-      color: #c05621;
-      margin-bottom: 6px;
-    }
-    .formula-box {
-      background: #edf2f7;
-      border-radius: 4px;
-      padding: 8px 12px;
-      font-family: monospace;
-      font-weight: bold;
-      display: inline-block;
-      margin: 4px 0;
-    }
-    .ut-img-container {
-      text-align: center;
-      margin: 20px 0;
-    }
-    .ut-img-container svg {
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UT1: Consum d'Energia a l'Habitatge - Energy Quest</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Retro Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d0e15;
+            color: #eceff4;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+        .retro-font {
+            font-family: 'VT323', monospace;
+        }
+        /* Retro gaming pixel style borders */
+        .pixel-box {
+            border: 4px solid #fff;
+            box-shadow:
+                0 0 0 4px #0d0e15,
+                0 0 15px rgba(236, 72, 153, 0.4),
+                inset 0 0 10px rgba(236, 72, 153, 0.2);
+            image-rendering: pixelated;
+        }
+        .pixel-box-cyan {
+            border: 4px solid #22d3ee;
+            box-shadow:
+                0 0 0 4px #0d0e15,
+                0 0 15px rgba(34, 211, 238, 0.4),
+                inset 0 0 10px rgba(34, 211, 238, 0.2);
+        }
+        .pixel-box-green {
+            border: 4px solid #4ade80;
+            box-shadow:
+                0 0 0 4px #0d0e15,
+                0 0 15px rgba(74, 222, 128, 0.4),
+                inset 0 0 10px rgba(74, 222, 128, 0.2);
+        }
+        .pixel-box-yellow {
+            border: 4px solid #facc15;
+            box-shadow:
+                0 0 0 4px #0d0e15,
+                0 0 15px rgba(250, 204, 21, 0.4),
+                inset 0 0 10px rgba(250, 204, 21, 0.2);
+        }
+        /* Buttons retro styling */
+        .pixel-btn {
+            position: relative;
+            display: inline-block;
+            border: 4px solid #fff;
+            background-color: #ec4899;
+            color: white;
+            text-shadow: 2px 2px 0px #000;
+            box-shadow:
+                0 4px 0px #831843,
+                0 0 10px rgba(236, 72, 153, 0.5);
+            transition: all 0.1s ease;
+        }
+        .pixel-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        .pixel-btn-cyan {
+            background-color: #06b6d4;
+            box-shadow:
+                0 4px 0px #0891b2,
+                0 0 10px rgba(6, 182, 212, 0.5);
+        }
+        .pixel-btn-cyan:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        /* Energy Label Colors matching original design */
+        .energy-A { background-color: #00A651; }
+        .energy-B { background-color: #52B848; }
+        .energy-C { background-color: #ACD13C; }
+        .energy-D { background-color: #FFF200; }
+        .energy-E { background-color: #F9A01B; }
+        .energy-F { background-color: #F26522; }
+        .energy-G { background-color: #ED1C24; }
 
-  <h1 class="ut-title">UT1: El Corrent Elèctric</h1>
+        /* Pulse Animation */
+        @keyframes neon-pulse {
+            0%, 100% { filter: drop-shadow(0 0 2px rgba(236, 72, 153, 0.6)); }
+            50% { filter: drop-shadow(0 0 10px rgba(236, 72, 153, 1)); }
+        }
+        .neon-glow {
+            animation: neon-pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
 
-  <!-- BLOC 1: FONAMENTS FÍSICS -->
-  <div class="ut-block">
-    <h3>1. Introducció i Fonaments Físics</h3>
-    <p>L'electricitat és una forma d'energia fàcilment transportable a través de cables i transformable en llum, calor, moviment o energia química. Atès que no és viable econòmicament emmagatzemar-la a gran escala, s'ha de generar la mateixa quantitat que es consumeix.</p>
-    
-    <p><strong>Estructura de la Matèria i l'Àtom:</strong> La matèria està formada per àtoms composts per un nucli (protons amb càrrega positiva i neutrons sense càrrega) i electrons (càrrega negativa) orbitant al seu voltant. En estat natural, un àtom és elèctricament neutre. La capa més allunyada del nucli s'anomena <strong>capa de valència</strong>, i el nombre d'electrons que conté determina el comportament elèctric del material.</p>
+        <!-- HEADER HUD -->
+        <header class="pixel-box mb-8 p-6 bg-slate-900 bg-opacity-80 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-2 text-rose-500 font-bold opacity-30 text-xs pixel-font">HP 99/99</div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <h1 class="pixel-font text-2xl md:text-3xl text-pink-500 neon-glow mb-2 uppercase tracking-wide">ENERGY QUEST</h1>
+                    <p class="retro-font text-2xl text-cyan-400">UT1: Consum d'Energia a l'Habitatge</p>
+                    <p class="text-sm text-slate-400 mt-1">Simulador interactiu d'eficiència i potència per a l'aula.</p>
+                </div>
 
-    <div class="ut-grid">
-      <div class="ut-card">
-        <strong>Conductors (1 a 3 e⁻ de valència):</strong> Permeten el moviment de càrregues amb facilitat. Exemples: metalls (coure, plata, or, alumini, ferro), aigua i solucions salines.
-      </div>
-      <div class="ut-card">
-        <strong>Aïllants (5 a 7 e⁻ de valència):</strong> Impedeixen el pas de càrregues elèctriques. Exemples: fusta, ceràmica, vidre, plàstics, cautxú, tefló.
-      </div>
-      <div class="ut-card">
-        <strong>Semiconductors (4 e⁻ de valència):</strong> Permeten o impedeixen el pas d'energia segons les condicions. Utilitzats en electrònica (silici, germani) per a xips, díodes i transistors.
-      </div>
+                <!-- HUD STATS BOARD -->
+                <div class="pixel-box-cyan bg-black p-4 flex gap-6 text-center text-xs md:text-sm">
+                    <div>
+                        <div class="text-cyan-400 pixel-font text-[10px] mb-1">SCORE</div>
+                        <div id="hud-score" class="text-white font-bold text-xl">1000</div>
+                    </div>
+                    <div class="border-l border-slate-700 h-10 my-auto"></div>
+                    <div>
+                        <div class="text-pink-500 pixel-font text-[10px] mb-1">CO2 / DIA</div>
+                        <div id="hud-co2" class="text-white font-bold text-xl">0.0 kg</div>
+                    </div>
+                    <div class="border-l border-slate-700 h-10 my-auto"></div>
+                    <div>
+                        <div class="text-green-400 pixel-font text-[10px] mb-1">CLASSE</div>
+                        <div id="hud-class" class="text-green-400 font-bold text-xl">A</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- LEFT PANEL: THEORY & FORMULA (QUEST 1) -->
+            <div class="lg:col-span-1 flex flex-col gap-8">
+
+                <!-- THE NPC DIALOGUE BOX -->
+                <div class="pixel-box bg-slate-900 p-6 relative">
+                    <div class="flex items-start gap-4">
+                        <!-- Custom retro SVG NPC character -->
+                        <div class="w-16 h-16 shrink-0 bg-slate-800 border-2 border-pink-500 flex items-center justify-center rounded">
+                            <svg class="w-12 h-12 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="10" rx="2" />
+                                <path d="M12 2v4M12 6H8M12 6h4" />
+                                <circle cx="8" cy="15" r="1.5" fill="currentColor" />
+                                <circle cx="16" cy="15" r="1.5" fill="currentColor" />
+                                <path d="M10 18h4" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="pixel-font text-[10px] text-pink-500 block mb-1">NPC: ECO-BOT v1.0</span>
+                            <p class="text-sm leading-relaxed text-slate-300">
+                                "Hola, estudiant! Sabies que l'energia elèctrica consumida a casa depèn directament de la potència dels electrodomèstics i del temps que els tinguem engegats?"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- THE PHYSICS FORMULA (Quest 1) -->
+                <div class="pixel-box-yellow bg-slate-950 p-6">
+                    <h3 class="pixel-font text-xs text-yellow-400 mb-4 flex items-center gap-2">
+                        <span>⚡</span> LA FÓRMULA DE L'ENERGIA
+                    </h3>
+                    <div class="bg-amber-950 border border-amber-500 p-4 rounded text-center mb-4">
+                        <div class="pixel-font text-xl md:text-2xl text-yellow-300 neon-glow">E = P &middot; t</div>
+                        <div class="text-xs text-amber-300 mt-2">Fórmula Clau d'Eficiència (UT1)</div>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><strong class="text-yellow-400">E:</strong> Energia consumida en <strong class="text-white">kWh</strong> (resultant de multiplicar kW per hores).</li>
+                        <li><strong class="text-yellow-400">P:</strong> Potència activa de l'aparell en <strong class="text-white">kW</strong>.</li>
+                        <li><strong class="text-yellow-400">t:</strong> Temps en <strong class="text-white">hores (h)</strong> que l'aparell està engegat.</li>
+                    </ul>
+                    <div class="mt-4 pt-4 border-t border-slate-800 text-xs text-slate-400 leading-relaxed">
+                        Per saber quant consumeixen, cal fixar-se en les característiques tècniques o plaques de característiques dels aparells!
+                    </div>
+                </div>
+
+                <!-- QUEST 3: ENERGY LABEL COMPASS -->
+                <div class="pixel-box-cyan bg-slate-900 p-6">
+                    <h3 class="pixel-font text-xs text-cyan-400 mb-4">🆕 CANVI DE CERTIFICAT</h3>
+                    <p class="text-sm text-slate-300 mb-3">
+                        Els certificats energètics han canviat! Les antigues lletres (A+++ a D) s'han adaptat al mercat amb electrodomèstics de consum molt inferior, anant ara de la <strong class="text-green-400">A</strong> fins a la <strong class="text-red-500">G</strong>.
+                    </p>
+
+                    <!-- Simplified labels visually simulated in HTML -->
+                    <div class="grid grid-cols-2 gap-2 text-center text-xs mt-4">
+                        <div class="bg-black p-2 border border-slate-700">
+                            <span class="text-yellow-400 block mb-1 font-bold">ANTIC</span>
+                            <span class="px-2 py-0.5 rounded text-white font-bold text-[10px] bg-green-700">A+++ / A++ / A+</span>
+                        </div>
+                        <div class="bg-black p-2 border border-slate-700">
+                            <span class="text-cyan-400 block mb-1 font-bold">ACTUAL</span>
+                            <span class="px-2 py-0.5 rounded text-black font-bold text-[10px] bg-green-500">A / B / C / D</span>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-slate-400 mt-3 leading-relaxed">
+                        Això evita la confusió de tants "+" i incentiva els fabricants a crear aparells encara més estalviadors.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- CENTER & RIGHT: INTERACTIVE SIMULATOR (QUEST 2) -->
+            <div class="lg:col-span-2 flex flex-col gap-8">
+
+                <!-- SIMULATOR CONTAINER -->
+                <div class="pixel-box-green bg-slate-900 p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-slate-800 pb-4">
+                        <div>
+                            <h2 class="pixel-font text-sm text-green-400 flex items-center gap-2">
+                                🎮 RECEPTARI & CALCULADORA D'ELECTRODOMÈSTICS
+                            </h2>
+                            <p class="text-xs text-slate-400 mt-1">Configura els aparells encesos i calcula el seu consum real.</p>
+                        </div>
+
+                        <!-- Contracted Power selector -->
+                        <div class="bg-slate-950 p-2 border border-slate-700 rounded text-xs">
+                            <label class="block text-slate-400 font-bold mb-1">Potència Contractada:</label>
+                            <select id="contracted-power" class="bg-slate-900 text-white font-mono p-1 rounded border border-slate-600 outline-none w-full" onchange="calculateEnergy()">
+                                <optgroup label="Monofàsica">
+                                    <option value="3.45-10.94">3.45 kW (10.94 €/mes)</option>
+                                    <option value="4.60-14.51">4.60 kW (14.51 €/mes)</option>
+                                    <option value="5.75-18.23">5.75 kW (18.23 €/mes)</option>
+                                    <option value="6.90-21.87" selected>6.90 kW (21.87 €/mes)</option>
+                                    <option value="8.05-25.52">8.05 kW (25.52 €/mes)</option>
+                                    <option value="9.20-29.16">9.20 kW (29.16 €/mes)</option>
+                                </optgroup>
+                                <optgroup label="Trifàsica">
+                                    <option value="2.425-7.69">2.425 kW (7.69 €/mes)</option>
+                                    <option value="3.464-10.98">3.464 kW (10.98 €/mes)</option>
+                                    <option value="5.196-16.47">5.196 kW (16.47 €/mes)</option>
+                                    <option value="6.928-21.87">6.928 kW (21.87 €/mes)</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ELECTRIC APPLIANCES CONTROL PANEL -->
+                    <div class="space-y-4">
+
+                        <!-- Appliance Template Component (rendered via JS or directly inside HTML for transparency) -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="nevera">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-nevera" checked class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-nevera" class="font-bold text-sm text-slate-200">❄️ Nevera</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-nevera" min="0.250" max="0.350" step="0.01" value="0.300" class="w-full accent-green-400" oninput="updateRangeLabel('nevera'); calculateEnergy()">
+                                <span id="val-nevera" class="text-xs font-mono font-bold text-green-400 w-16">0.300 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-nevera" min="1" max="24" value="24" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-nevera" class="font-mono text-sm font-bold text-pink-400">7.20 kWh</span>
+                            </div>
+                        </div>
+
+                        <!-- Vitroceràmica -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="vitro">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-vitro" class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-vitro" class="font-bold text-sm text-slate-200">🍳 Vitroceràmica</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-vitro" min="0.900" max="2.000" step="0.05" value="1.500" class="w-full accent-green-400" oninput="updateRangeLabel('vitro'); calculateEnergy()">
+                                <span id="val-vitro" class="text-xs font-mono font-bold text-green-400 w-16">1.500 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-vitro" min="0.1" max="24" step="0.1" value="1.5" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-vitro" class="font-mono text-sm font-bold text-pink-400">0.00 kWh</span>
+                            </div>
+                        </div>
+
+                        <!-- Microones -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="micro">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-micro" class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-micro" class="font-bold text-sm text-slate-200">⚡ Microones</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-micro" min="0.900" max="1.500" step="0.05" value="1.200" class="w-full accent-green-400" oninput="updateRangeLabel('micro'); calculateEnergy()">
+                                <span id="val-micro" class="text-xs font-mono font-bold text-green-400 w-16">1.200 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-micro" min="0.1" max="24" step="0.1" value="0.5" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-micro" class="font-mono text-sm font-bold text-pink-400">0.00 kWh</span>
+                            </div>
+                        </div>
+
+                        <!-- Forn -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="forn">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-forn" class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-forn" class="font-bold text-sm text-slate-200">🍞 Forn Elèctric</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-forn" min="1.200" max="2.200" step="0.05" value="1.800" class="w-full accent-green-400" oninput="updateRangeLabel('forn'); calculateEnergy()">
+                                <span id="val-forn" class="text-xs font-mono font-bold text-green-400 w-16">1.800 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-forn" min="0.1" max="24" step="0.1" value="1.0" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-forn" class="font-mono text-sm font-bold text-pink-400">0.00 kWh</span>
+                            </div>
+                        </div>
+
+                        <!-- Rentadora -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="rentadora">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-rentadora" class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-rentadora" class="font-bold text-sm text-slate-200">🧺 Rentadora</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-rentadora" min="1.500" max="2.200" step="0.05" value="1.900" class="w-full accent-green-400" oninput="updateRangeLabel('rentadora'); calculateEnergy()">
+                                <span id="val-rentadora" class="text-xs font-mono font-bold text-green-400 w-16">1.900 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-rentadora" min="0.1" max="24" step="0.1" value="1.5" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-rentadora" class="font-mono text-sm font-bold text-pink-400">0.00 kWh</span>
+                            </div>
+                        </div>
+
+                        <!-- Rentavaixelles -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="rentavaixelles">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-rentavaixelles" class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-rentavaixelles" class="font-bold text-sm text-slate-200">🧼 Rentavaixelles</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-rentavaixelles" min="1.500" max="2.200" step="0.05" value="1.850" class="w-full accent-green-400" oninput="updateRangeLabel('rentavaixelles'); calculateEnergy()">
+                                <span id="val-rentavaixelles" class="text-xs font-mono font-bold text-green-400 w-16">1.850 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-rentavaixelles" min="0.1" max="24" step="0.1" value="1.2" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-rentavaixelles" class="font-mono text-sm font-bold text-pink-400">0.00 kWh</span>
+                            </div>
+                        </div>
+
+                        <!-- Aire condicionat -->
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center bg-slate-950 p-3 rounded border border-slate-800 transition hover:border-slate-700" data-appliance="clima">
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <input type="checkbox" id="power-clima" class="w-4 h-4 accent-green-400" onchange="calculateEnergy()">
+                                <label for="power-clima" class="font-bold text-sm text-slate-200">🍃 Climatització</label>
+                            </div>
+                            <div class="md:col-span-4 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-12 text-right">Potència:</span>
+                                <input type="range" id="kw-clima" min="0.900" max="2.000" step="0.05" value="1.500" class="w-full accent-green-400" oninput="updateRangeLabel('clima'); calculateEnergy()">
+                                <span id="val-clima" class="text-xs font-mono font-bold text-green-400 w-16">1.500 kW</span>
+                            </div>
+                            <div class="md:col-span-3 flex items-center gap-2">
+                                <span class="text-xs text-slate-400 w-10 text-right">Hores:</span>
+                                <input type="number" id="hours-clima" min="0.1" max="24" step="0.1" value="4.0" class="w-16 bg-slate-900 border border-slate-700 text-center font-mono rounded p-0.5 text-sm" onchange="calculateEnergy()">
+                                <span class="text-xs text-slate-500">h/dia</span>
+                            </div>
+                            <div class="md:col-span-2 text-right">
+                                <span id="kwh-clima" class="font-mono text-sm font-bold text-pink-400">0.00 kWh</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- TOTAL RESULTS HUB -->
+                    <div class="mt-8 pt-6 border-t border-slate-800 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-black p-4 rounded border border-slate-800 text-center">
+                            <span class="text-xs text-slate-400 block mb-1">TOTAL ENERGIA DIÀRIA</span>
+                            <span id="total-energy" class="text-2xl font-bold font-mono text-pink-500">7.20 kWh</span>
+                        </div>
+                        <div class="bg-black p-4 rounded border border-slate-800 text-center">
+                            <span class="text-xs text-slate-400 block mb-1">FACTURA ESTIMADA AL MES</span>
+                            <span id="total-cost" class="text-2xl font-bold font-mono text-cyan-400">0.00 €</span>
+                            <div class="text-[10px] text-slate-500 mt-1">Inclou potència contractada</div>
+                        </div>
+                        <div class="bg-black p-4 rounded border border-slate-800 flex flex-col justify-center items-center">
+                            <span class="text-xs text-slate-400 block mb-1">EFICIÈNCIA TOTAL LLAR</span>
+                            <div id="efficiency-badge" class="px-4 py-1 rounded text-black font-bold text-sm font-mono uppercase energy-A">Classe A</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- POWER-UPS AND CHEATS (SAVING TIPS) -->
+                <div class="pixel-box bg-slate-950 p-6">
+                    <h2 class="pixel-font text-xs text-pink-500 mb-6 uppercase tracking-wider flex items-center gap-2">
+                        🌟 ENERGY POWER-UPS (CONSELLS D'ESTALVI DE LA UT1)
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <!-- Cold washing -->
+                        <div class="bg-slate-900 p-4 rounded border border-pink-900/40 relative overflow-hidden transition hover:bg-slate-850">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="text-2xl">🧊</span>
+                                <h4 class="font-bold text-sm text-pink-400">Rentadora a Baixa Temperatura</h4>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                En funció del mode (30ºC, 40ºC o 50ºC) pots reduir significativament el consum de la rentadora <strong>fins a un 80%</strong>. Estalvia en cada rentada!
+                            </p>
+                        </div>
+
+                        <!-- Induction cooking -->
+                        <div class="bg-slate-900 p-4 rounded border border-pink-900/40 relative overflow-hidden transition hover:bg-slate-850">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="text-2xl">🔥</span>
+                                <h4 class="font-bold text-sm text-pink-400">Vitroceràmica vs Inducció</h4>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                La vitroceràmica tradicional consumeix un <strong>45% més</strong> que la inducció. Truc: apaga el fogó o abaixa la temperatura de l'aigua quan ja estigui bullint.
+                            </p>
+                        </div>
+
+                        <!-- Residual heat -->
+                        <div class="bg-slate-900 p-4 rounded border border-pink-900/40 relative overflow-hidden transition hover:bg-slate-850">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="text-2xl">🍞</span>
+                                <h4 class="font-bold text-sm text-pink-400">Calor Residual del Forn</h4>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                El forn representa un <strong>8% del consum</strong> de casa. Apaga'l 5-10 minuts abans d'acabar la cocció per aprofitar tota la calor que queda acumulada!
+                            </p>
+                        </div>
+
+                        <!-- LED upgrades -->
+                        <div class="bg-slate-900 p-4 rounded border border-pink-900/40 relative overflow-hidden transition hover:bg-slate-850">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="text-2xl">💡</span>
+                                <h4 class="font-bold text-sm text-pink-400">Revolució LED</h4>
+                            </div>
+                            <p class="text-xs text-slate-300">
+                                Passar de les bombetes incandescents tradicionals a tecnologia LED suposa un <strong>88% d'estalvi energètic</strong> instantani en la il·luminació.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="mt-12 text-center text-xs text-slate-500 border-t border-slate-850 pt-6 mb-8">
+            <p>Creat per a l'assignatura de MEELE (Manteniment de Sistemes Elèctrics i Electrònics de Vehicles / Eficiència Energètica).</p>
+            <p class="mt-1 text-slate-600">&copy; 2026 - Desenvolupat amb Gemini Notebook. Estil Retro Pixel Art.</p>
+        </footer>
+
     </div>
 
-    <p><strong>Càrrega Elèctrica i Llei de Coulomb:</strong> La càrrega elèctrica es mesura en Coulombs (C), on <span class="formula-box">1 C = 6.24 · 10¹⁸ e⁻</span>. Quan les càrregues estan en repòs tenim electricitat estàtica. Les càrregues del mateix signe es repelen i les de signe contrari s'atreuen segons la Llei de Coulomb:</p>
-    
-    <div class="formula-box">F = k · (Q₁ · Q₂) / d² &nbsp;&nbsp;|&nbsp;&nbsp; k = 8.987 · 10⁹ N·m²/C²</div>
+    <!-- JAVASCRIPT GAME LOGIC -->
+    <script>
+        const appliancesList = {
+            nevera: { checkboxId: 'power-nevera', kwId: 'kw-nevera', hoursId: 'hours-nevera', outputId: 'kwh-nevera', baseShare: 0.2 },
+            vitro: { checkboxId: 'power-vitro', kwId: 'kw-vitro', hoursId: 'hours-vitro', outputId: 'kwh-vitro' },
+            micro: { checkboxId: 'power-micro', kwId: 'kw-micro', hoursId: 'hours-micro', outputId: 'kwh-micro' },
+            forn: { checkboxId: 'power-forn', kwId: 'kw-forn', hoursId: 'hours-forn', outputId: 'kwh-forn' },
+            rentadora: { checkboxId: 'power-rentadora', kwId: 'kw-rentadora', hoursId: 'hours-rentadora', outputId: 'kwh-rentadora' },
+            rentavaixelles: { checkboxId: 'power-rentavaixelles', kwId: 'kw-rentavaixelles', hoursId: 'hours-rentavaixelles', outputId: 'kwh-rentavaixelles' },
+            clima: { checkboxId: 'power-clima', kwId: 'kw-clima', hoursId: 'hours-clima', outputId: 'kwh-clima' }
+        };
 
-    <!-- Esquema de la Llei de Coulomb -->
-    <div class="ut-img-container">
-      <svg viewBox="0 0 600 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
-        <rect width="100%" height="100%" fill="#f8fafc" rx="8"/>
-        <!-- Càrrega Q1 -->
-        <circle cx="150" cy="70" r="30" fill="#e53e3e"/>
-        <text x="150" y="77" fill="#ffffff" font-size="24" font-weight="bold" text-anchor="middle">+</text>
-        <text x="150" y="120" fill="#2d3748" font-weight="bold" text-anchor="middle">Q₁ (+)</text>
-        
-        <!-- Càrrega Q2 -->
-        <circle cx="450" cy="70" r="30" fill="#3182ce"/>
-        <text x="450" y="75" fill="#ffffff" font-size="30" font-weight="bold" text-anchor="middle">-</text>
-        <text x="450" y="120" fill="#2d3748" font-weight="bold" text-anchor="middle">Q₂ (-)</text>
-        
-        <!-- Distància d -->
-        <line x1="150" y1="70" x2="450" y2="70" stroke="#a0aec0" stroke-width="2" stroke-dasharray="6,6"/>
-        <text x="300" y="60" fill="#4a5568" font-weight="bold" text-anchor="middle">Distància (d)</text>
-        
-        <!-- Forces F -->
-        <path d="M 190 70 L 240 70" stroke="#dd6b20" stroke-width="3" marker-end="url(#arrow)"/>
-        <path d="M 410 70 L 360 70" stroke="#dd6b20" stroke-width="3" marker-end="url(#arrow)"/>
-        <text x="300" y="95" fill="#dd6b20" font-weight="bold" text-anchor="middle">Força d'Atracció (F)</text>
-        
-        <!-- Flecha definition -->
-        <defs>
-          <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#dd6b20"/>
-          </marker>
-        </defs>
-      </svg>
-    </div>
+        function updateRangeLabel(applianceKey) {
+            const range = document.getElementById(appliancesList[applianceKey].kwId);
+            const label = document.getElementById('val-' + applianceKey);
+            if (range && label) {
+                label.textContent = parseFloat(range.value).toFixed(3) + ' kW';
+            }
+        }
 
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitat 1</div>
-      Si un determinat material té un excés de 25.2 · 10¹⁸ electrons, quants Coulombs de càrrega negativa té?
-    </div>
-  </div>
+        function calculateEnergy() {
+            let totalKwhDaily = 0;
 
-  <!-- BLOC 2: MAGNITUDS I LLEIS ELÈCTRIQUES -->
-  <div class="ut-block">
-    <h3>2. Magnituds, Lleis i Circuits Elèctrics</h3>
-    
-    <p><strong>Intensitat (I):</strong> Quantitat de càrrega que circula per un conductor per unitat de temps. Es mesura en Ampers (A), on <span class="formula-box">1 A = 1 C / 1 s</span>.
-    <br><em>Sentit real:</em> del pol negatiu al positiu. <em>Sentit convencional (usat en càlculs):</em> del pol positiu al negatiu.</p>
+            // Calculate each appliance daily usage: E = P * t
+            for (const [key, config] of Object.entries(appliancesList)) {
+                const checkbox = document.getElementById(config.checkboxId);
+                const kwInput = document.getElementById(config.kwId);
+                const hoursInput = document.getElementById(config.hoursId);
+                const outputSpan = document.getElementById(config.outputId);
 
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitats 2 i 3</div>
-      <ul>
-        <li><strong>Activitat 2:</strong> Si es té un corrent de 10 A, quants electrons circulen en un segon? I en un minut?</li>
-        <li><strong>Activitat 3:</strong> Quina intensitat circula per un conductor si per ell flueix una càrrega de 4 Coulombs en un temps de 2 segons?</li>
-      </ul>
-    </div>
+                if (checkbox.checked) {
+                    const kw = parseFloat(kwInput.value);
+                    const hours = parseFloat(hoursInput.value);
+                    const kwh = kw * hours;
+                    totalKwhDaily += kwh;
+                    outputSpan.textContent = kwh.toFixed(2) + ' kWh';
+                    outputSpan.classList.remove('text-slate-500');
+                    outputSpan.classList.add('text-pink-400');
+                } else {
+                    outputSpan.textContent = '0.00 kWh';
+                    outputSpan.classList.remove('text-pink-400');
+                    outputSpan.classList.add('text-slate-500');
+                }
+            }
 
-    <p><strong>Voltatge / Tensió (V):</strong> Causant del moviment dels electrons, mesurat entre dos punts en Volts (V). Pot esser Corrent Continu (CC, valor constant) o Corrent Altern (CA, varia periòdicament).</p>
-    
-    <p><strong>Resistència (R):</strong> Oposició al pas del corrent elèctric, mesurada en Ohms (Ω).</p>
+            // Update daily total
+            document.getElementById('total-energy').textContent = totalKwhDaily.toFixed(2) + ' kWh';
 
-    <p><strong>Llei d'Ohm:</strong> Formulada per Georg Simon Ohm:</p>
-    <div class="formula-box">V = R · I</div>
+            // Calculate Carbon footprint (Approx. 0.25 kg CO2 per kWh in Spain)
+            const co2 = totalKwhDaily * 0.25;
+            document.getElementById('hud-co2').textContent = co2.toFixed(1) + ' kg';
 
-    <!-- Triangle de la Llei d'Ohm -->
-    <div class="ut-img-container">
-      <svg viewBox="0 0 300 220" width="260" height="190" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="150,10 20,200 280,200" fill="#ebf8ff" stroke="#3182ce" stroke-width="4"/>
-        <line x1="68" y1="110" x2="232" y2="110" stroke="#3182ce" stroke-width="4"/>
-        <line x1="150" y1="110" x2="150" y2="200" stroke="#3182ce" stroke-width="4"/>
-        
-        <text x="150" y="80" fill="#2b6cb0" font-size="36" font-weight="bold" text-anchor="middle">V</text>
-        <text x="85" y="170" fill="#2b6cb0" font-size="36" font-weight="bold" text-anchor="middle">I</text>
-        <text x="215" y="170" fill="#2b6cb0" font-size="36" font-weight="bold" text-anchor="middle">R</text>
-      </svg>
-    </div>
+            // Get selected Contracted Power values
+            const powerSelect = document.getElementById('contracted-power');
+            const [contractedKw, monthlyFixedPrice] = powerSelect.value.split('-').map(parseFloat);
 
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitat 4</div>
-      <ul>
-        <li>Tenim un circuit amb R = 6 Ω connectat a 12 V. Quin corrent hi circularà?</li>
-        <li>Si per R = 16 Ω hi circulen 3 A, a quin voltatge està connectada?</li>
-        <li>En un circuit hi circulen 10 A quan està connectat a 25 V. Quina resistència té?</li>
-      </ul>
-    </div>
+            // Variable Cost estimation: 30 days, average rate of 0.15€ per kWh
+            const monthlyVariableCost = totalKwhDaily * 30 * 0.15;
+            const totalMonthlyCost = monthlyFixedPrice + monthlyVariableCost;
+            document.getElementById('total-cost').textContent = totalMonthlyCost.toFixed(2) + ' €';
 
-    <p><strong>Múltiples i Submúltiples:</strong></p>
-    <table class="ut-table">
-      <thead>
-        <tr><th>Prefix</th><th>Símbol</th><th>Notació</th><th>Factor</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Tera</td><td>T</td><td>10¹²</td><td>x 1.000.000.000.000</td></tr>
-        <tr><td>Giga</td><td>G</td><td>10⁹</td><td>x 1.000.000.000</td></tr>
-        <tr><td>Mega</td><td>M</td><td>10⁶</td><td>x 1.000.000</td></tr>
-        <tr><td>Kilo</td><td>k</td><td>10³</td><td>x 1.000</td></tr>
-        <tr><td>mili</td><td>m</td><td>10⁻³</td><td>: 1.000</td></tr>
-        <tr><td>micro</td><td>µ</td><td>10⁻⁶</td><td>: 1.000.000</td></tr>
-        <tr><td>nano</td><td>n</td><td>10⁻⁹</td><td>: 1.000.000.000</td></tr>
-        <tr><td>pico</td><td>p</td><td>10⁻¹²</td><td>: 1.000.000.000.000</td></tr>
-      </tbody>
-    </table>
+            // Determine Efficiency Score & Rating (Student Gamification Score)
+            let score = 1500 - Math.round(totalKwhDaily * 40);
+            if (score < 100) score = 100;
+            document.getElementById('hud-score').textContent = score;
 
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitats 5 i 6</div>
-      <ul>
-        <li><strong>Activitat 5:</strong> Tenim un circuit amb R = 5 kΩ per on circulen 2 mA. A quin voltatge està connectat?</li>
-        <li><strong>Activitat 6:</strong> Realitzar conversions d'unitats (ex: 2700 µA a A, 56 kΩ a Ω, 12 MΩ a kΩ, etc.).</li>
-      </ul>
-    </div>
-  </div>
+            const badge = document.getElementById('efficiency-badge');
+            const hudClassBadge = document.getElementById('hud-class');
 
-  <!-- BLOC 3: POTÈNCIA, ENERGIA I RENDIMENT -->
-  <div class="ut-block">
-    <h3>3. Potència, Energia i Rendiment</h3>
-    
-    <p><strong>Potència Elèctrica (P):</strong> Capacitat per transformar energia per unitat de temps, mesurada en Watts (W). Equivalència: <span class="formula-box">1 CV = 735 W</span>.</p>
-    <div class="formula-box">P = V · I = R · I² = V² / R</div>
+            // Efficiency bounds logic based on daily consumption
+            badge.className = 'px-4 py-1 rounded text-black font-bold text-sm font-mono uppercase ';
 
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitats 7 i 8</div>
-      <ul>
-        <li><strong>Activitat 7:</strong> Un cotxe elèctric de 90 kW, quants cavalls de vapor (CV) té?</li>
-        <li><strong>Activitat 8:</strong>
-          <br>- Resistència de 20 Ω amb 5 A: quina potència dissipa?
-          <br>- Estufa de 1500 W a 230 V: quina intensitat hi circula?
-          <br>- Bombeta de 20 W amb R = 7.2 Ω: a quin voltatge s'ha de connectar?
-        </li>
-      </ul>
-    </div>
+            if (totalKwhDaily < 5.0) {
+                badge.classList.add('energy-A');
+                badge.textContent = 'Classe A';
+                hudClassBadge.textContent = 'A';
+                hudClassBadge.className = 'text-green-400 font-bold text-xl';
+            } else if (totalKwhDaily < 8.0) {
+                badge.classList.add('energy-B');
+                badge.textContent = 'Classe B';
+                hudClassBadge.textContent = 'B';
+                hudClassBadge.className = 'text-emerald-400 font-bold text-xl';
+            } else if (totalKwhDaily < 11.0) {
+                badge.classList.add('energy-C');
+                badge.textContent = 'Classe C';
+                hudClassBadge.textContent = 'C';
+                hudClassBadge.className = 'text-lime-400 font-bold text-xl';
+            } else if (totalKwhDaily < 15.0) {
+                badge.classList.add('energy-D');
+                badge.textContent = 'Classe D';
+                hudClassBadge.textContent = 'D';
+                hudClassBadge.className = 'text-yellow-400 font-bold text-xl';
+            } else if (totalKwhDaily < 20.0) {
+                badge.classList.add('energy-E');
+                badge.textContent = 'Classe E';
+                hudClassBadge.textContent = 'E';
+                hudClassBadge.className = 'text-orange-400 font-bold text-xl';
+            } else {
+                badge.classList.add('energy-G');
+                badge.textContent = 'Classe G';
+                hudClassBadge.textContent = 'G';
+                hudClassBadge.className = 'text-red-500 font-bold text-xl';
+            }
+        }
 
-    <p><strong>Efecte Joule:</strong> Transformació inevitable de part de l'energia elèctrica en calor en passar per un conductor.</p>
-
-    <p><strong>Energia Elèctrica (E):</strong> Potència consumida o subministrada durant un cert temps. Es mesura en Joules (J) o kilowatt-hora (kWh).</p>
-    <div class="formula-box">E = P · t &nbsp;&nbsp;|&nbsp;&nbsp; 1 kWh = 3.600.000 J</div>
-
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitat 9</div>
-      <ul>
-        <li>Bombeta de 20 W encesa 6 h/dia: quanta energia diària consumeix en J i en kWh?</li>
-        <li>Televisor a 230 V i 0.7 A encès 4 hores: calcula la potència i l'energia consumida.</li>
-      </ul>
-    </div>
-
-    <p><strong>Rendiment (η):</strong> Relació entre la potència útil obtinguda i la potència elèctrica absorbida:</p>
-    <div class="formula-box">η = P<sub>útil</sub> / P<sub>absorbida</sub></div>
-
-    <div class="ut-activity">
-      <div class="ut-activity-title">Activitat 10</div>
-      <ul>
-        <li>Motor amb P<sub>mecànica</sub> = 750 W i P<sub>elèctrica</sub> = 1110 W: quin és el seu rendiment?</li>
-        <li>Motor amb η = 70% que entrega 500 W mecànics: quina potència elèctrica absorbeix?</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- BLOC 4: EL SISTEMA ELÈCTRIC -->
-  <div class="ut-block">
-    <h3>4. El Sistema Elèctric</h3>
-    <ul>
-      <li><strong>Generació:</strong> Transformació d'energia mecànica (turbines impulsades per aigua, vapor o vent) en elèctrica mitjançant alternadors en corrent altern.</li>
-      <li><strong>Transport i Distribució:</strong> L'electricitat s'eleva a Alta Tensió mitjançant transformadors per reduir les pèrdues per efecte Joule durant el transport a llargues distàncies. Posteriorment se redueix la tensió en centres de transformació per a ús industrial i residencial.</li>
-    </ul>
-  </div>
-</section>
-<!-- FI SECCIÓ UT1 -->
+        // Run on initial load
+        calculateEnergy();
+    </script>
+</body>
+</html>
