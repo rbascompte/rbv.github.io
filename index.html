@@ -1,591 +1,345 @@
-
+<!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electrotècnia 1r GM | Portal de l'Assignatura</title>
-    <!-- Fonts de Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Icones FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <title>Electrotècnia - CFGM IEA</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #dbeafe;
-            --accent: #f59e0b;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --radius: 12px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            --primary: #0056b3;
+            --primary-dark: #003d80;
+            --secondary: #f4f6f9;
+            --text: #333;
+            --light-bg: #ffffff;
+            --border: #e0e0e0;
+            --accent: #e67e22;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+            color: var(--text);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* Capçalera i Navegació */
         header {
-            background-color: #1e293b;
+            background-color: var(--primary);
             color: white;
-            padding: 1rem 2rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
+        }
+
+        header p {
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: var(--primary-dark);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0.5rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .logo i {
-            color: var(--accent);
-            font-size: 1.5rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1.5rem;
-        }
-
-        nav a {
-            color: #cbd5e1;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-            cursor: pointer;
-        }
-
-        nav a:hover, nav a.active {
-            color: white;
-        }
-
-        /* Contenidor Principal */
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-            flex: 1;
-            width: 100%;
-        }
-
-        /* Secció Hero / Benvinguda */
-        .hero {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            color: white;
-            padding: 3rem 2rem;
-            border-radius: var(--radius);
-            margin-bottom: 2.5rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            font-size: 2.25rem;
-            margin-bottom: 0.75rem;
-            font-weight: 700;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #bfdbfe;
-            max-width: 700px;
-        }
-
-        /* Reixeta d'Unitats */
-        .units-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .unit-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 1.75rem;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: var(--shadow);
-        }
-
-        .unit-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-light);
-        }
-
-        .unit-badge {
-            align-self: flex-start;
-            padding: 0.25rem 0.75rem;
-            background-color: var(--primary-light);
-            color: var(--primary-dark);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .unit-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-
-        .unit-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
+        nav button {
+            background: none;
             border: none;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.2s;
+            border-radius: 4px;
+            transition: background 0.3s;
         }
 
-        .btn:hover {
-            background-color: var(--primary-dark);
+        nav button:hover, nav button.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
         }
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .btn-outline:hover {
-            background-color: var(--primary-light);
-        }
-
-        /* Vistes de Contingut de les Unitats */
-        .content-view {
+        .section {
             display: none;
-            background-color: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .content-view.active {
+        .section.active {
             display: block;
         }
 
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .breadcrumb a {
+        h2 {
             color: var(--primary);
-            text-decoration: none;
-            cursor: pointer;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
         }
 
-        .unit-header {
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .unit-header h2 {
-            font-size: 2rem;
-            color: var(--text-main);
-        }
-
-        /* Seccions de Teoria */
-        .theory-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .theory-section h3 {
-            font-size: 1.35rem;
+        h3 {
             color: var(--primary-dark);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-top: 1.5rem;
         }
 
-        .theory-section p {
-            margin-bottom: 1rem;
-            color: #334155;
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .img-container {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .img-caption {
+            font-size: 0.88rem;
+            color: #666;
+            margin-top: 0.4rem;
+            font-style: italic;
         }
 
         .formula-box {
-            background-color: #f1f5f9;
+            background-color: #eef6ff;
             border-left: 4px solid var(--primary);
-            padding: 1.25rem;
-            border-radius: 0 var(--radius) var(--radius) 0;
-            margin: 1.5rem 0;
-            font-family: 'Fira Code', monospace;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 4px 4px 0;
         }
 
-        .formula-title {
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Calculadora d'Ohm */
-        .calculator-card {
-            background-color: #f8fafc;
+        .calc-box {
+            background: #f9f9f9;
             border: 1px solid var(--border);
-            border-radius: var(--radius);
             padding: 1.5rem;
-            margin: 2rem 0;
+            border-radius: 6px;
+            margin-top: 1.5rem;
         }
 
         .calc-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
-            margin-top: 1rem;
+            margin-bottom: 1rem;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-weight: 600;
+        .calc-field label {
+            display: block;
             font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
         }
 
-        .form-group input {
-            padding: 0.6rem;
+        .calc-field input {
+            width: 100%;
+            padding: 0.5rem;
             border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 1rem;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
-        .calc-result {
+        .calc-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .calc-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        #calc-result {
             margin-top: 1rem;
-            padding: 1rem;
-            background-color: var(--primary-light);
+            font-weight: bold;
             color: var(--primary-dark);
-            border-radius: 6px;
-            font-weight: 600;
-            text-align: center;
         }
 
-        /* Peu de Pàgina */
         footer {
-            background-color: #0f172a;
-            color: #94a3b8;
             text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
+            padding: 1.5rem;
+            color: #777;
             font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .hero h1 {
-                font-size: 1.75rem;
-            }
-            .content-view {
-                padding: 1.5rem;
-            }
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Capçalera -->
     <header>
-        <div class="nav-container">
-            <div class="logo" onclick="showView('home')">
-                <i class="fa-solid fa-bolt"></i>
-                <span>Electrotècnia 1r GM</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a id="nav-home" class="active" onclick="showView('home')">Inici</a></li>
-                    <li><a id="nav-ut0" onclick="showView('ut0')">UT0 - Matèria</a></li>
-                    <li><a id="nav-ut1" onclick="showView('ut1')">UT1 - Corrent</a></li>
-                </ul>
-            </nav>
-        </div>
+        <h1>Electrotècnia</h1>
+        <p>1r de Cicle Formatiu de Grau Mitjà - IEA</p>
     </header>
 
-    <!-- Contingut Principal -->
+    <nav>
+        <button class="tab-btn active" onclick="openTab(event, 'home')">Inici</button>
+        <button class="tab-btn" onclick="openTab(event, 'ut0')">UT0: Repàs de Matemàtiques</button>
+        <button class="tab-btn" onclick="openTab(event, 'ut1')">UT1: El Corrent Elèctric</button>
+    </nav>
+
     <main>
+        <!-- SECCIÓ INICI -->
+        <section id="home" class="section active">
+            <h2>Pàgina Principal</h2>
+            <p>Benvingut/da al portal de l'assignatura d'<strong>Electrotècnia</strong>. En aquest espai trobaràs el material teòric, esquemes i eines pràctiques per seguir el curs.</p>
+            <h3>Unitats de la secció:</h3>
+            <ul>
+                <li><strong>UT0: Repàs de Matemàtiques</strong> — Aïllament d'incògnites, notació científica i conversió d'unitats.</li>
+                <li><strong>UT1: El Corrent Elèctric</strong> — Magnituds fonamentals, Llei d'Ohm, energia, potència i efecte Joule.</li>
+            </ul>
+        </section>
 
-        <!-- PÀGINA PRINCIPAL / HOME -->
-        <div id="view-home" class="content-view active">
-            <div class="hero">
-                <h1>Mòdul d'Electrotècnia i Circuits</h1>
-                <p>Benvinguts al portal de continguts i apunts del grau mitjà. Aquí trobaràs la teoria, fórmules i exercicis per seguir l'assignatura pas a pas.</p>
-            </div>
-
-            <h2>Unitats Didàctiques</h2>
-            <div class="units-grid">
-                
-                <!-- Targeta UT0 -->
-                <div class="unit-card">
-                    <div>
-                        <span class="unit-badge">Mòdul Previ</span>
-                        <h3 class="unit-title">UT0 - Repàs de Matemàtiques</h3>
-                        <p class="unit-desc">Eines matemàtiques bàsiques indispensables per a l'electrotècnia: resolució d'equacions, aïllar variables i notació científica.</p>
-                    </div>
-                    <button class="btn" onclick="showView('ut0')">
-                        Veure Unitat <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-
-                <!-- Targeta UT1 -->
-                <div class="unit-card">
-                    <div>
-                        <span class="unit-badge">Unitat 1</span>
-                        <h3 class="unit-title">UT1 - El Corrent Elèctric</h3>
-                        <p class="unit-desc">Estructura de l'àtom, càrrega elèctrica, magnituts fonamentals (T-V-I-R), Llei d'Ohm, energia i potència elèctrica.</p>
-                    </div>
-                    <button class="btn" onclick="showView('ut1')">
-                        Veure Unitat <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-
-                <!-- Targeta UT2 (Futura) -->
-                <div class="unit-card" style="opacity: 0.7;">
-                    <div>
-                        <span class="unit-badge" style="background-color: #e2e8f0; color: #64748b;">Pròximament</span>
-                        <h3 class="unit-title">UT2 - Circuits de Corrent Continu</h3>
-                        <p class="unit-desc">Anàlisi de circuits en sèrie, paral·lel i mixtes. Lleis de Kirchhoff i càlcul de potències associades.</p>
-                    </div>
-                    <button class="btn btn-outline" disabled style="cursor: not-allowed;">En preparació</button>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- VISTA UT0: REPÀS MATEMÀTIQUES -->
-        <div id="view-ut0" class="content-view">
-            <div class="breadcrumb">
-                <a onclick="showView('home')">Inici</a> <i class="fa-solid fa-chevron-right"></i> <span>UT0 - Repàs Previ Matemàtiques</span>
-            </div>
+        <!-- SECCIÓ UT0 -->
+        <section id="ut0" class="section">
+            <h2>UT0 - Repàs Previ de Matemàtiques</h2>
+            <p>Abans de començar amb l'estudi dels circuits elèctrics, és essencial dominar certs conceptes matemàtics bàsics:</p>
             
-            <div class="unit-header">
-                <h2>UT0 - Repàs Previ de Matemàtiques</h2>
+            <h3>1. Aïllament d'Incògnites</h3>
+            <p>Saber transposar termes a les equacions és fonamental per calcular diferents magnituds elèctriques.</p>
+            <ul>
+                <li>Lo que està sumant passa restant: A + B = C &rarr; A = C - B</li>
+                <li>Lo que està multiplicant passa dividint: I &middot; R = V &rarr; I = V / R</li>
+            </ul>
+
+            <h3>2. Notació Científica i Prefixos</h3>
+            <p>En electrotècnia treballem amb valors molt grans o molt petits:</p>
+            <ul>
+                <li><strong>Kilo (k):</strong> 10³ = 1.000 (ex: 1 k&Omega; = 1.000 &Omega;)</li>
+                <li><strong>Mega (M):</strong> 10⁶ = 1.000.000</li>
+                <li><strong>Mili (m):</strong> 10⁻³ = 0,001 (ex: 1 mA = 0,001 A)</li>
+                <li><strong>Micro (&mu;):</strong> 10⁻⁶ = 0,000001</li>
+            </ul>
+        </section>
+
+        <!-- SECCIÓ UT1 -->
+        <section id="ut1" class="section">
+            <h2>UT1 - El Corrent Elèctric</h2>
+            
+            <h3>1. Concepte de Corrent Elèctric</h3>
+            <p>El corrent elèctric és el flux ordenat d'electrons a través d'un material conductor. Perquè hi hagi circulació de corrent cal un circuit tancat i una diferència de potencial (tensió) que impulsi els electrons.</p>
+            
+            <div class="img-container">
+                <img src="img/esquema_electric.jpg.png" alt="Esquema d'un circuit elèctric bàsic">
+                <div class="img-caption">Figura 1: Esquema bàsic d'un circuit elèctric amb font de tensió, conductor i receptor.</div>
             </div>
 
-            <div class="theory-section">
-                <h3><i class="fa-solid fa-calculator"></i> 1. Aïllar variables en fórmules elèctriques</h3>
-                <p>En electrotècnia utilitzarem fórmules directes com la Llei d'Ohm. És vital saber aïllar qualsevol variable:</p>
-                
-                <div class="formula-box">
-                    <div class="formula-title">Exemple: Formula del Voltatge V = I · R</div>
-                    <p>• Si volem trobar la Intensitat (I): <strong>I = V / R</strong></p>
-                    <p>• Si volem trobar la Resistència (R): <strong>R = V / I</strong></p>
-                </div>
-            </div>
+            <h3>2. Magnituds Elèctriques Fonamentals</h3>
+            <ul>
+                <li><strong>Tensió / Voltatge (V):</strong> És la diferència de potencial entre dos punts. S'expressa en <strong>Volts (V)</strong>.</li>
+                <li><strong>Intensitat de corrent (I):</strong> És la quantitat de càrrega elèctrica que travessa una secció del conductor per unitat de temps. S'expressa en <strong>Amperes (A)</strong>.</li>
+                <li><strong>Resistència elèctrica (R):</strong> És l'oposició que ofereix un material al pas del corrent elèctric. S'expressa en <strong>Ohms (&Omega;)</strong>.</li>
+            </ul>
 
-            <div class="theory-section">
-                <h3><i class="fa-solid fa-subscript"></i> 2. Notació Científica i Múltiples</h3>
-                <p>Les magnituds elèctriques poden ser extremadament grans (com la resistència) o molt petites (com el corrent en electrònica):</p>
+            <h3>3. La Llei d'Ohm</h3>
+            <p>Estableix la relació directa entre la tensió, la intensitat i la resistència d'un circuit elèctric:</p>
+            
+            <div class="formula-box">
+                <p><strong>Fórmula general:</strong> V = I &middot; R</p>
+                <p>D'aquí podem derivar:</p>
                 <ul>
-                    <li><strong>Kilo (k):</strong> 10³ = 1.000 (ex: 1 kΩ = 1.000 Ω)</li>
-                    <li><strong>Mega (M):</strong> 10⁶ = 1.000.000 (ex: 1 MΩ = 1.000.000 Ω)</li>
-                    <li><strong>Mil·li (m):</strong> 10⁻³ = 0,001 (ex: 1 mA = 0,001 A)</li>
-                    <li><strong>Micro (µ):</strong> 10⁻⁶ = 0,000001</li>
+                    <li>I = V / R</li>
+                    <li>R = V / I</li>
                 </ul>
             </div>
-        </div>
 
-        <!-- VISTA UT1: EL CORRENT ELÈCTRIC -->
-        <div id="view-ut1" class="content-view">
-            <div class="breadcrumb">
-                <a onclick="showView('home')">Inici</a> <i class="fa-solid fa-chevron-right"></i> <span>UT1 - El Corrent Elèctric</span>
+            <div class="img-container">
+                <img src="img/triangle-ohm.jpg.png" alt="Triangle de la Llei d'Ohm">
+                <div class="img-caption">Figura 2: Regla mnemotècnica del triangle de la Llei d'Ohm.</div>
             </div>
 
-            <div class="unit-header">
-                <h2>UT1 - El Corrent Elèctric</h2>
+            <h3>4. Potència i Energia Elèctrica</h3>
+            <p>La <strong>potència elèctrica (P)</strong> indica la quantitat d'energia elèctrica consumida o transformada per unitat de temps. S'expressa en <strong>Watts (W)</strong>.</p>
+            <div class="formula-box">
+                <p><strong>Fórmula de la Potència:</strong> P = V &middot; I</p>
+            </div>
+            <p>L'<strong>energia elèctrica (E)</strong> és el treball realitzat pel corrent en un temps determinat (t). Normalment es mesura en <strong>Joules (J)</strong> o en <strong>Kilowatts-hora (kWh)</strong>.</p>
+            <div class="formula-box">
+                <p><strong>Fórmula de l'Energia:</strong> E = P &middot; t</p>
             </div>
 
-            <div class="theory-section">
-                <h3><i class="fa-solid fa-atom"></i> 1. Estructura de la Matèria i Càrrega Elèctrica</h3>
-                <p>Tota la matèria està formada per àtoms. Els <strong>electrons</strong> tenen càrrega negativa i són els responsables del corrent elèctric quan es desplacen pel conductor.</p>
-                <p>La unitat de càrrega elèctrica és el <strong>Coulomb (C)</strong>.</p>
-            </div>
-
-            <div class="theory-section">
-                <h3><i class="fa-solid fa-gauge-high"></i> 2. Magnituds Elèctriques Fonamentals</h3>
-                
-                <div class="formula-box">
-                    <div class="formula-title">Tensió o Voltatge (V)</div>
-                    <p>És la diferència de potencial entre dos punts. Unitat: <strong>Volt (V)</strong>.</p>
-                </div>
-
-                <div class="formula-box">
-                    <div class="formula-title">Intensitat de Corrent (I)</div>
-                    <p>Quantitat de càrrega elèctrica que passa per la secció d'un conductor per unitat de temps. Unitat: <strong>Amperi (A)</strong>.</p>
-                    <code>Formula: I = Q / t</code>
-                </div>
-
-                <div class="formula-box">
-                    <div class="formula-title">Resistència Elèctrica (R)</div>
-                    <p>Oposició que ofereix un material al pas del corrent elèctric. Unitat: <strong>Ohm (Ω)</strong>.</p>
-                </div>
-            </div>
-
-            <div class="theory-section">
-                <h3><i class="fa-solid fa-triangle-exclamation"></i> 3. La Llei d'Ohm</h3>
-                <p>Relaciona la tensió, la intensitat i la resistència d'un circuit elèctric:</p>
-                <div class="formula-box" style="text-align: center; font-size: 1.2rem; font-weight: bold; border-left-color: var(--accent);">
-                    V = I · R
-                </div>
-
-                <!-- Calculadora de Llei d'Ohm -->
-                <div class="calculator-card">
-                    <h4><i class="fa-solid fa-calculator"></i> Calculadora de la Llei d'Ohm</h4>
-                    <p style="font-size: 0.85rem; color: var(--text-muted);">Introdueix dos valors qualsevol per calcular el tercer:</p>
-                    
-                    <div class="calc-grid">
-                        <div class="form-group">
-                            <label for="voltage">Voltatge (V)</label>
-                            <input type="number" id="voltage" placeholder="Ex: 230" oninput="calculateOhm()">
-                        </div>
-                        <div class="form-group">
-                            <label for="current">Intensitat (A)</label>
-                            <input type="number" id="current" placeholder="Ex: 10" oninput="calculateOhm()">
-                        </div>
-                        <div class="form-group">
-                            <label for="resistance">Resistència (Ω)</label>
-                            <input type="number" id="resistance" placeholder="Ex: 23" oninput="calculateOhm()">
-                        </div>
+            <h3>5. Calculadora de la Llei d'Ohm</h3>
+            <div class="calc-box">
+                <p>Introdueix dos valors qualsevol per calcular el tercer:</p>
+                <div class="calc-grid">
+                    <div class="calc-field">
+                        <label for="calc-v">Tensió (V):</label>
+                        <input type="number" id="calc-v" placeholder="ex: 12">
                     </div>
-                    <div id="calc-output" class="calc-result">Omple dos camps per veure el resultat</div>
+                    <div class="calc-field">
+                        <label for="calc-i">Intensitat (A):</label>
+                        <input type="number" id="calc-i" placeholder="ex: 2">
+                    </div>
+                    <div class="calc-field">
+                        <label for="calc-r">Resistència (&Omega;):</label>
+                        <input type="number" id="calc-r" placeholder="ex: 6">
+                    </div>
                 </div>
+                <button class="calc-btn" onclick="calcularOhm()">Calcular</button>
+                <div id="calc-result"></div>
             </div>
-
-            <div class="theory-section">
-                <h3><i class="fa-solid fa-plug"></i> 4. Potència i Energia Elèctrica</h3>
-                <p>La <strong>potència (P)</strong> és el treball elèctric desenvolupat per unitat de temps. Es mesura en <strong>Watts (W)</strong>.</p>
-                <div class="formula-box">
-                    <code>P = V · I</code>
-                </div>
-            </div>
-        </div>
-
+        </section>
     </main>
 
-    <!-- Peu de pàgina -->
     <footer>
-        <p>&copy; 2026 Electrotècnia - 1r Cicle Formatiu de Grau Mitjà | Creat per al repositori personal</p>
+        <p>&copy; 2026 Electrotècnia - CFGM IEA | Allotjat a GitHub Pages</p>
     </footer>
 
-    <!-- Script de Navegació i Lògica -->
     <script>
-        function showView(viewId) {
-            // Amagar totes les vistes
-            document.querySelectorAll('.content-view').forEach(view => {
-                view.classList.remove('active');
-            });
+        function openTab(evt, tabName) {
+            let sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
 
-            // Desmarcar tots els links de navegació
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-            });
+            let buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Mostrar la vista seleccionada
-            const targetView = document.getElementById('view-' + viewId);
-            if (targetView) {
-                targetView.classList.add('active');
-            }
-
-            // Marcar el link de navegació com actiu
-            const targetNav = document.getElementById('nav-' + viewId);
-            if (targetNav) {
-                targetNav.classList.add('active');
-            }
-
-            // Desplaçar cap amunt
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
         }
 
-        // Calculadora Llei d'Ohm
-        function calculateOhm() {
-            const v = parseFloat(document.getElementById('voltage').value);
-            const i = parseFloat(document.getElementById('current').value);
-            const r = parseFloat(document.getElementById('resistance').value);
-            const output = document.getElementById('calc-output');
+        function calcularOhm() {
+            let v = parseFloat(document.getElementById('calc-v').value);
+            let i = parseFloat(document.getElementById('calc-i').value);
+            let r = parseFloat(document.getElementById('calc-r').value);
+            let res = document.getElementById('calc-result');
 
             if (!isNaN(v) && !isNaN(i) && isNaN(r)) {
-                const res = (v / i).toFixed(2);
-                output.innerText = `Resistència (R) = ${res} Ω`;
-            } else if (!isNaN(v) && !isNaN(r) && isNaN(i)) {
-                const res = (v / r).toFixed(2);
-                output.innerText = `Intensitat (I) = ${res} A`;
-            } else if (!isNaN(i) && !isNaN(r) && isNaN(v)) {
-                const res = (i * r).toFixed(2);
-                output.innerText = `Voltatge (V) = ${res} V`;
-            } else if (!isNaN(v) && !isNaN(i) && !isNaN(r)) {
-                output.innerText = `Has introduït tots tres valors! Comprova si es compleix: V = ${i * r} V`;
+                res.innerText = `Resistència (R) = ${(v / i).toFixed(2)} Ω`;
+            } else if (!isNaN(v) && isNaN(i) && !isNaN(r)) {
+                res.innerText = `Intensitat (I) = ${(v / r).toFixed(2)} A`;
+            } else if (isNaN(v) && !isNaN(i) && !isNaN(r)) {
+                res.innerText = `Tensió (V) = ${(i * r).toFixed(2)} V`;
             } else {
-                output.innerText = `Omple dos camps per calcular el tercer`;
+                res.innerText = "Si us plau, omple exactament dos camps per calcular el tercer.";
             }
         }
     </script>
