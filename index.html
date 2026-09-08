@@ -77,6 +77,14 @@
       display: inline-block;
       margin: 4px 0;
     }
+    .ut-img-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .ut-img-container svg {
+      max-width: 100%;
+      height: auto;
+    }
   </style>
 
   <h1 class="ut-title">UT1: El Corrent Elèctric</h1>
@@ -84,28 +92,61 @@
   <!-- BLOC 1: FONAMENTS FÍSICS -->
   <div class="ut-block">
     <h3>1. Introducció i Fonaments Físics</h3>
-    <p>L'electricitat és una forma d'energia fàcilment transportable a través de cables i transformable en llum, calor, moviment o energia química[cite: 2]. Atès que no és viable econòmicament emmagatzemar-la a gran escala, s'ha de generar la mateixa quantitat que es consumeix[cite: 2].</p>
+    <p>L'electricitat és una forma d'energia fàcilment transportable a través de cables i transformable en llum, calor, moviment o energia química. Atès que no és viable econòmicament emmagatzemar-la a gran escala, s'ha de generar la mateixa quantitat que es consumeix.</p>
     
-    <p><strong>Estructura de la Matèria i l'Àtom:</strong> La matèria està formada per àtoms composts per un nucli (protons amb càrrega positiva i neutrons sense càrrega) i electrons (càrrega negativa) orbitant al seu voltant[cite: 2]. En estat natural, un àtom és elèctricament neutre[cite: 2]. La capa més allunyada del nucli s'anomena <strong>capa de valència</strong>, i el nombre d'electrons que conté determina el comportament elèctric del material[cite: 2].</p>
+    <p><strong>Estructura de la Matèria i l'Àtom:</strong> La matèria està formada per àtoms composts per un nucli (protons amb càrrega positiva i neutrons sense càrrega) i electrons (càrrega negativa) orbitant al seu voltant. En estat natural, un àtom és elèctricament neutre. La capa més allunyada del nucli s'anomena <strong>capa de valència</strong>, i el nombre d'electrons que conté determina el comportament elèctric del material.</p>
 
     <div class="ut-grid">
       <div class="ut-card">
-        <strong>Conductors (1 a 3 e⁻ de valència):</strong> Permeten el moviment de càrregues amb facilitat[cite: 2]. Exemples: metalls (coure, plata, or, alumini, ferro), aigua i solucions salines[cite: 2].
+        <strong>Conductors (1 a 3 e⁻ de valència):</strong> Permeten el moviment de càrregues amb facilitat. Exemples: metalls (coure, plata, or, alumini, ferro), aigua i solucions salines.
       </div>
       <div class="ut-card">
-        <strong>Aïllants (5 a 7 e⁻ de valència):</strong> Impedeixen el pas de càrregues elèctriques[cite: 2]. Exemples: fusta, ceràmica, vidre, plàstics, cautxú, tefló[cite: 2].
+        <strong>Aïllants (5 a 7 e⁻ de valència):</strong> Impedeixen el pas de càrregues elèctriques. Exemples: fusta, ceràmica, vidre, plàstics, cautxú, tefló.
       </div>
       <div class="ut-card">
-        <strong>Semiconductors (4 e⁻ de valència):</strong> Permeten o impedeixen el pas d'energia segons les condicions[cite: 2]. Utilitzats en electrònica (silici, germani) per a xips, díodes i transistors[cite: 2].
+        <strong>Semiconductors (4 e⁻ de valència):</strong> Permeten o impedeixen el pas d'energia segons les condicions. Utilitzats en electrònica (silici, germani) per a xips, díodes i transistors.
       </div>
     </div>
 
-    <p><strong>Càrrega Elèctrica i Llei de Coulomb:</strong> La càrrega elèctrica es mesura en Coulombs (C), on <span class="formula-box">1 C = 6.24 · 10¹⁸ e⁻</span>[cite: 2]. Quan les càrregues estan en repòs tenim electricitat estàtica[cite: 2]. Les càrregues del mateix signe es repelen i les de signe contrari s'atreuen segons la Llei de Coulomb[cite: 2]:</p>
+    <p><strong>Càrrega Elèctrica i Llei de Coulomb:</strong> La càrrega elèctrica es mesura en Coulombs (C), on <span class="formula-box">1 C = 6.24 · 10¹⁸ e⁻</span>. Quan les càrregues estan en repòs tenim electricitat estàtica. Les càrregues del mateix signe es repelen i les de signe contrari s'atreuen segons la Llei de Coulomb:</p>
+    
     <div class="formula-box">F = k · (Q₁ · Q₂) / d² &nbsp;&nbsp;|&nbsp;&nbsp; k = 8.987 · 10⁹ N·m²/C²</div>
-<img src="esquema_electric.jpg" alt="Esquema elèctric" width="100%">
+
+    <!-- Esquema de la Llei de Coulomb -->
+    <div class="ut-img-container">
+      <svg viewBox="0 0 600 160" width="100%" height="160" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100%" height="100%" fill="#f8fafc" rx="8"/>
+        <!-- Càrrega Q1 -->
+        <circle cx="150" cy="70" r="30" fill="#e53e3e"/>
+        <text x="150" y="77" fill="#ffffff" font-size="24" font-weight="bold" text-anchor="middle">+</text>
+        <text x="150" y="120" fill="#2d3748" font-weight="bold" text-anchor="middle">Q₁ (+)</text>
+        
+        <!-- Càrrega Q2 -->
+        <circle cx="450" cy="70" r="30" fill="#3182ce"/>
+        <text x="450" y="75" fill="#ffffff" font-size="30" font-weight="bold" text-anchor="middle">-</text>
+        <text x="450" y="120" fill="#2d3748" font-weight="bold" text-anchor="middle">Q₂ (-)</text>
+        
+        <!-- Distància d -->
+        <line x1="150" y1="70" x2="450" y2="70" stroke="#a0aec0" stroke-width="2" stroke-dasharray="6,6"/>
+        <text x="300" y="60" fill="#4a5568" font-weight="bold" text-anchor="middle">Distància (d)</text>
+        
+        <!-- Forces F -->
+        <path d="M 190 70 L 240 70" stroke="#dd6b20" stroke-width="3" marker-end="url(#arrow)"/>
+        <path d="M 410 70 L 360 70" stroke="#dd6b20" stroke-width="3" marker-end="url(#arrow)"/>
+        <text x="300" y="95" fill="#dd6b20" font-weight="bold" text-anchor="middle">Força d'Atracció (F)</text>
+        
+        <!-- Flecha definition -->
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#dd6b20"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
     <div class="ut-activity">
       <div class="ut-activity-title">Activitat 1</div>
-      Si un determinat material té un excés de 25.2 · 10¹⁸ electrons, quants Coulombs de càrrega negativa té[cite: 2]?
+      Si un determinat material té un excés de 25.2 · 10¹⁸ electrons, quants Coulombs de càrrega negativa té?
     </div>
   </div>
 
@@ -113,30 +154,43 @@
   <div class="ut-block">
     <h3>2. Magnituds, Lleis i Circuits Elèctrics</h3>
     
-    <p><strong>Intensitat (I):</strong> Quantitat de càrrega que circula per un conductor per unitat de temps[cite: 2]. Es mesura en Ampers (A), on <span class="formula-box">1 A = 1 C / 1 s</span>[cite: 2].
-    <br><em>Sentit real:</em> del pol negatiu al positiu[cite: 2]. <em>Sentit convencional (usat en càlculs):</em> del pol positiu al negatiu[cite: 2].</p>
+    <p><strong>Intensitat (I):</strong> Quantitat de càrrega que circula per un conductor per unitat de temps. Es mesura en Ampers (A), on <span class="formula-box">1 A = 1 C / 1 s</span>.
+    <br><em>Sentit real:</em> del pol negatiu al positiu. <em>Sentit convencional (usat en càlculs):</em> del pol positiu al negatiu.</p>
 
     <div class="ut-activity">
       <div class="ut-activity-title">Activitats 2 i 3</div>
       <ul>
-        <li><strong>Activitat 2:</strong> Si es té un corrent de 10 A, quants electrons circulen en un segon[cite: 2]? I en un minut[cite: 2]?</li>
-        <li><strong>Activitat 3:</strong> Quina intensitat circula per un conductor si per ell flueix una càrrega de 4 Coulombs en un temps de 2 segons[cite: 2]?</li>
+        <li><strong>Activitat 2:</strong> Si es té un corrent de 10 A, quants electrons circulen en un segon? I en un minut?</li>
+        <li><strong>Activitat 3:</strong> Quina intensitat circula per un conductor si per ell flueix una càrrega de 4 Coulombs en un temps de 2 segons?</li>
       </ul>
     </div>
 
-    <p><strong>Voltatge / Tensió (V):</strong> Causant del moviment dels electrons, mesurat entre dos punts en Volts (V)[cite: 2]. Pot esser Corrent Continu (CC, valor constant) o Corrent Altern (CA, varia periòdicament)[cite: 2].</p>
+    <p><strong>Voltatge / Tensió (V):</strong> Causant del moviment dels electrons, mesurat entre dos punts en Volts (V). Pot esser Corrent Continu (CC, valor constant) o Corrent Altern (CA, varia periòdicament).</p>
     
-    <p><strong>Resistència (R):</strong> Oposició al pas del corrent elèctric, mesurada en Ohms (Ω)[cite: 2].</p>
+    <p><strong>Resistència (R):</strong> Oposició al pas del corrent elèctric, mesurada en Ohms (Ω).</p>
 
-    <p><strong>Llei d'Ohm:</strong> Formulada per Georg Simon Ohm[cite: 2]:</p>
+    <p><strong>Llei d'Ohm:</strong> Formulada per Georg Simon Ohm:</p>
     <div class="formula-box">V = R · I</div>
-<img src="triangle-ohm.jpg" alt="Triangle de la llei d'Ohm" width="100%">
+
+    <!-- Triangle de la Llei d'Ohm -->
+    <div class="ut-img-container">
+      <svg viewBox="0 0 300 220" width="260" height="190" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="150,10 20,200 280,200" fill="#ebf8ff" stroke="#3182ce" stroke-width="4"/>
+        <line x1="68" y1="110" x2="232" y2="110" stroke="#3182ce" stroke-width="4"/>
+        <line x1="150" y1="110" x2="150" y2="200" stroke="#3182ce" stroke-width="4"/>
+        
+        <text x="150" y="80" fill="#2b6cb0" font-size="36" font-weight="bold" text-anchor="middle">V</text>
+        <text x="85" y="170" fill="#2b6cb0" font-size="36" font-weight="bold" text-anchor="middle">I</text>
+        <text x="215" y="170" fill="#2b6cb0" font-size="36" font-weight="bold" text-anchor="middle">R</text>
+      </svg>
+    </div>
+
     <div class="ut-activity">
       <div class="ut-activity-title">Activitat 4</div>
       <ul>
-        <li>Tenim un circuit amb R = 6 Ω connectat a 12 V. Quin corrent hi circularà[cite: 2]?</li>
-        <li>Si per R = 16 Ω hi circulen 3 A, a quin voltatge està connectada[cite: 2]?</li>
-        <li>En un circuit hi circulen 10 A quan està connectat a 25 V. Quina resistència té[cite: 2]?</li>
+        <li>Tenim un circuit amb R = 6 Ω connectat a 12 V. Quin corrent hi circularà?</li>
+        <li>Si per R = 16 Ω hi circulen 3 A, a quin voltatge està connectada?</li>
+        <li>En un circuit hi circulen 10 A quan està connectat a 25 V. Quina resistència té?</li>
       </ul>
     </div>
 
@@ -160,8 +214,8 @@
     <div class="ut-activity">
       <div class="ut-activity-title">Activitats 5 i 6</div>
       <ul>
-        <li><strong>Activitat 5:</strong> Tenim un circuit amb R = 5 kΩ per on circulen 2 mA. A quin voltatge està connectat[cite: 2]?</li>
-        <li><strong>Activitat 6:</strong> Realitzar conversions d'unitats (ex: 2700 µA a Ω, 56 kΩ a Ω, 12 MΩ a kΩ, etc.)[cite: 2].</li>
+        <li><strong>Activitat 5:</strong> Tenim un circuit amb R = 5 kΩ per on circulen 2 mA. A quin voltatge està connectat?</li>
+        <li><strong>Activitat 6:</strong> Realitzar conversions d'unitats (ex: 2700 µA a A, 56 kΩ a Ω, 12 MΩ a kΩ, etc.).</li>
       </ul>
     </div>
   </div>
@@ -170,42 +224,42 @@
   <div class="ut-block">
     <h3>3. Potència, Energia i Rendiment</h3>
     
-    <p><strong>Potència Elèctrica (P):</strong> Capacitat per transformar energia per unitat de temps, mesurada en Watts (W)[cite: 2]. Equivalència: <span class="formula-box">1 CV = 735 W</span>[cite: 2].</p>
+    <p><strong>Potència Elèctrica (P):</strong> Capacitat per transformar energia per unitat de temps, mesurada en Watts (W). Equivalència: <span class="formula-box">1 CV = 735 W</span>.</p>
     <div class="formula-box">P = V · I = R · I² = V² / R</div>
 
     <div class="ut-activity">
       <div class="ut-activity-title">Activitats 7 i 8</div>
       <ul>
-        <li><strong>Activitat 7:</strong> Un cotxe elèctric de 90 kW, quants cavalls de vapor (CV) té[cite: 2]?</li>
+        <li><strong>Activitat 7:</strong> Un cotxe elèctric de 90 kW, quants cavalls de vapor (CV) té?</li>
         <li><strong>Activitat 8:</strong>
-          <br>- Resistència de 20 Ω amb 5 A: quina potència dissipa[cite: 2]?
-          <br>- Estufa de 1500 W a 230 V: quina intensitat hi circula[cite: 2]?
-          <br>- Bombeta de 20 W amb R = 7.2 Ω: a quin voltatge s'ha de connectar[cite: 2]?
+          <br>- Resistència de 20 Ω amb 5 A: quina potència dissipa?
+          <br>- Estufa de 1500 W a 230 V: quina intensitat hi circula?
+          <br>- Bombeta de 20 W amb R = 7.2 Ω: a quin voltatge s'ha de connectar?
         </li>
       </ul>
     </div>
 
-    <p><strong>Efecte Joule:</strong> Transformació inevitable de part de l'energia elèctrica en calor en passar per un conductor[cite: 2].</p>
+    <p><strong>Efecte Joule:</strong> Transformació inevitable de part de l'energia elèctrica en calor en passar per un conductor.</p>
 
-    <p><strong>Energia Elèctrica (E):</strong> Potència consumida o subministrada durant un cert temps[cite: 2]. Es mesura en Joules (J) o kilowatt-hora (kWh)[cite: 2].</p>
+    <p><strong>Energia Elèctrica (E):</strong> Potència consumida o subministrada durant un cert temps. Es mesura en Joules (J) o kilowatt-hora (kWh).</p>
     <div class="formula-box">E = P · t &nbsp;&nbsp;|&nbsp;&nbsp; 1 kWh = 3.600.000 J</div>
 
     <div class="ut-activity">
       <div class="ut-activity-title">Activitat 9</div>
       <ul>
-        <li>Bombeta de 20 W encesa 6 h/dia: quanta energia diària consumeix en J i en kWh[cite: 2]?</li>
-        <li>Televisor a 230 V i 0.7 A encès 4 hores: calcula la potència i l'energia consumida[cite: 2].</li>
+        <li>Bombeta de 20 W encesa 6 h/dia: quanta energia diària consumeix en J i en kWh?</li>
+        <li>Televisor a 230 V i 0.7 A encès 4 hores: calcula la potència i l'energia consumida.</li>
       </ul>
     </div>
 
-    <p><strong>Rendiment (η):</strong> Relació entre la potència útil obtinguda i la potència elèctrica absorbida[cite: 2]:</p>
-    <div class="formula-box">η = P_útil / P_absorbida</div>
+    <p><strong>Rendiment (η):</strong> Relació entre la potència útil obtinguda i la potència elèctrica absorbida:</p>
+    <div class="formula-box">η = P<sub>útil</sub> / P<sub>absorbida</sub></div>
 
     <div class="ut-activity">
       <div class="ut-activity-title">Activitat 10</div>
       <ul>
-        <li>Motor amb P_mecànica = 750 W i P_elèctrica = 1110 W: quin és el seu rendiment[cite: 2]?</li>
-        <li>Motor amb η = 70% que entrega 500 W mecànics: quina potència elèctrica absorbeix[cite: 2]?</li>
+        <li>Motor amb P<sub>mecànica</sub> = 750 W i P<sub>elèctrica</sub> = 1110 W: quin és el seu rendiment?</li>
+        <li>Motor amb η = 70% que entrega 500 W mecànics: quina potència elèctrica absorbeix?</li>
       </ul>
     </div>
   </div>
@@ -214,8 +268,8 @@
   <div class="ut-block">
     <h3>4. El Sistema Elèctric</h3>
     <ul>
-      <li><strong>Generació:</strong> Transformació d'energia mecànica (turbines impulsades per aigua, vapor o vent) en elèctrica mitjançant alternadors en corrent altern[cite: 2].</li>
-      <li><strong>Transport i Distribució:</strong> L'electricitat s'eleva a Alta Tensió mitjançant transformadors per reduir les pèrdues per efecte Joule durant el transport a llargues distàncies[cite: 2]. Posteriorment se redueix la tensió en centres de transformació per a ús industrial i residencial[cite: 2].</li>
+      <li><strong>Generació:</strong> Transformació d'energia mecànica (turbines impulsades per aigua, vapor o vent) en elèctrica mitjançant alternadors en corrent altern.</li>
+      <li><strong>Transport i Distribució:</strong> L'electricitat s'eleva a Alta Tensió mitjançant transformadors per reduir les pèrdues per efecte Joule durant el transport a llargues distàncies. Posteriorment se redueix la tensió en centres de transformació per a ús industrial i residencial.</li>
     </ul>
   </div>
 </section>
