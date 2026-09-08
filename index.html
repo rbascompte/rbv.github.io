@@ -3,524 +3,956 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UT1: Consum i Eficiència Energètica a l'Habitatge</title>
-    <!-- Tailwind CSS per a disseny modern -->
+    <title>UT1: Consum a un habitatge - MEELE</title>
+    <!-- Tailwind CSS per un disseny modern i professional de llibre digital -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter per a text acadèmic modern -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Biblioteca d'icones Lucide per un format acadèmic -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .sidebar-active {
+            background-color: #f1f5f9;
             color: #0f172a;
+            font-weight: 600;
+            border-left: 4px solid #2563eb;
         }
-        .code-font {
-            font-family: 'JetBrains Mono', monospace;
+        .tab-content {
+            display: none;
         }
-        .textbook-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
-            border-radius: 0.75rem;
+        .tab-content.active {
+            display: block;
         }
-        /* Definicions de color de l'etiqueta energètica actual de la UE (A-G) */
-        .badge-A { background-color: #00a651; color: white; }
-        .badge-B { background-color: #4cb848; color: white; }
-        .badge-C { background-color: #b2d235; color: #0f172a; }
-        .badge-D { background-color: #fff200; color: #0f172a; }
-        .badge-E { background-color: #f7941d; color: white; }
-        .badge-F { background-color: #f26522; color: white; }
-        .badge-G { background-color: #ed1c24; color: white; }
+        .formula-box {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
+        }
     </style>
 </head>
-<body class="antialiased min-h-screen pb-16">
+<body class="min-h-screen flex flex-col">
 
-    <!-- HEADER DE LLIBRE DE TEXT -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 py-4 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div>
-                <span class="text-xs font-semibold text-blue-600 uppercase tracking-widest">Unitat Didàctica 1 (MEELE)</span>
-                <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Consum i Eficiència Energètica en un Habitatge</h1>
+    <!-- CAPÇALERA ESCOLAR -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-blue-600 text-white rounded-lg">
+                    <i data-lucide="zap" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-blue-600 block">Unitat Didàctica 1</span>
+                    <h1 class="text-lg font-bold text-slate-900">Consum a un Habitatge i Eficiència</h1>
+                </div>
             </div>
-            <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-md text-sm">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-slate-600 font-medium">Recursos i simulador actiu</span>
+            <div class="hidden md:flex items-center space-x-4 text-sm text-slate-500">
+                <span class="flex items-center gap-1"><i data-lucide="book-open" class="w-4 h-4"></i> Llibre de Text Digital</span>
+                <span class="text-slate-300">|</span>
+                <span class="flex items-center gap-1"><i data-lucide="award" class="w-4 h-4"></i> MEELE</span>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 mt-8">
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 flex flex-col lg:flex-row gap-8 w-full">
 
-        <!-- INTRODUCCIÓ I FÓRMULA CLAU -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
-
-            <div class="lg:col-span-2 flex flex-col justify-between textbook-card p-8">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2 border-b border-slate-100 pb-2">
-                        <span class="text-blue-600">1.1</span> El Consum d'Energia a l'Habitatge
-                    </h2>
-                    <p class="text-slate-600 leading-relaxed mb-4 text-justify">
-                        L’energia elèctrica és el producte que consumim a casa durant un temps determinat. Per tant, el consum energètic d’un habitatge està estretament lligat a la <strong>potència nominal</strong> dels diferents aparells electrodomèstics i al <strong>temps de funcionament</strong> que aquests romanguin actius o connectats a la xarxa elèctrica.
-                    </p>
-                    <p class="text-slate-600 leading-relaxed mb-4 text-justify">
-                        En el cas de la tarifa de discriminació horària, també serà clau <em>el moment del dia</em> (les hores vall, planes o punta) en què s'utilitzin els aparells, ja que el preu del kWh varia. A més, la factura elèctrica incorpora un cost fix referent a la <strong>potència contractada</strong>, la qual es calcula en funció de la quantitat d'aparells d'alt consum que vulguem tenir encesos simultàniament.
-                    </p>
-                </div>
-                <div class="bg-blue-50/50 border border-blue-100 p-4 rounded-lg mt-4">
-                    <span class="text-xs font-bold text-blue-800 uppercase tracking-wider block mb-1">Unitat d'ús pràctic</span>
-                    <p class="text-sm text-slate-700">
-                        La unitat de mesura de consum emprada habitualment als habitatges és el <strong>kilowatt-hora (kWh)</strong>, resultat de multiplicar la potència nominal consumida (en kW) pel nombre d'hores totals que han estat engegats els aparells.
-                    </p>
-                </div>
+        <!-- SIDEBAR DE NAVEGACIÓ AMB APARTATS DE LA UT1 -->
+        <aside class="w-full lg:w-64 shrink-0">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 sticky top-24 shadow-sm">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider px-3 mb-4">Temari i Continguts</h3>
+                <nav class="space-y-1">
+                    <button onclick="switchTab('introduccio')" id="btn-introduccio" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5 sidebar-active">
+                        <i data-lucide="help-circle" class="w-4 h-4 shrink-0"></i>
+                        <span>1. Introducció i Consum</span>
+                    </button>
+                    <button onclick="switchTab('calcul-energia')" id="btn-calcul-energia" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="binary" class="w-4 h-4 shrink-0"></i>
+                        <span>2. Càlcul de l'Energia</span>
+                    </button>
+                    <button onclick="switchTab('potencies-aparells')" id="btn-potencies-aparells" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="table" class="w-4 h-4 shrink-0"></i>
+                        <span>3. Potència d'Aparells</span>
+                    </button>
+                    <button onclick="switchTab('casos-particulars')" id="btn-casos-particulars" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="info" class="w-4 h-4 shrink-0"></i>
+                        <span>4. Casos Particulars</span>
+                    </button>
+                    <button onclick="switchTab('certificats')" id="btn-certificats" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="tag" class="w-4 h-4 shrink-0"></i>
+                        <span>5. Certificats Energètics</span>
+                    </button>
+                    <button onclick="switchTab('dades-clau')" id="btn-dades-clau" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="lightbulb" class="w-4 h-4 shrink-0"></i>
+                        <span>6. Dades Clau d'Estalvi</span>
+                    </button>
+                    <button onclick="switchTab('potencia-contractada')" id="btn-potencia-contractada" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="landmark" class="w-4 h-4 shrink-0"></i>
+                        <span>7. Potència Contractada</span>
+                    </button>
+                    <button onclick="switchTab('simulador')" id="btn-simulador" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="calculator" class="w-4 h-4 shrink-0"></i>
+                        <span>8. Calculadora Educativa</span>
+                    </button>
+                    <button onclick="switchTab('tasques')" id="btn-tasques" class="w-full text-left px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition flex items-center gap-2.5">
+                        <i data-lucide="clipboard-list" class="w-4 h-4 shrink-0"></i>
+                        <span>9. Tasques de l'Alumne</span>
+                    </button>
+                </nav>
             </div>
+        </aside>
 
-            <!-- QUADRE DE LA FÓRMULA CLAU -->
-            <div class="textbook-card p-8 bg-slate-900 text-white flex flex-col justify-between border-none relative overflow-hidden shadow-md">
-                <div class="absolute -right-16 -top-16 w-32 h-32 bg-blue-600/10 rounded-full blur-2xl"></div>
-                <div>
-                    <span class="text-xs font-semibold text-blue-400 uppercase tracking-wider block mb-2">Equació de Consum</span>
-                    <h3 class="text-lg font-bold mb-4 border-b border-slate-800 pb-2">La Llei del Consum Elèctric</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        L'energia és directament proporcional a la potència instantània dels electrodomèstics i el temps que s'utilitzen:
-                    </p>
-                    <div class="my-6 py-4 px-6 bg-slate-950 rounded-lg text-center border border-slate-800">
-                        <div class="code-font text-3xl font-bold text-blue-400">E = P &middot; t</div>
+        <!-- CONTINGUT PRINCIPAL DE LA UT1 -->
+        <main class="flex-1 min-w-0 bg-white rounded-xl border border-slate-200 p-6 lg:p-8 shadow-sm">
+
+            <!-- SECCIÓ 1: INTRODUCCIÓ -->
+            <div id="introduccio" class="tab-content active space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 1</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">El corrent elèctric: Quin consum tenim a casa?</h2>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed text-base">
+                    Com ja hem vist, el corrent elèctric és el pas i flux d'energia. L’energia és el que es consumeix durant un cert temps. Per tant, l’energia consumida a casa dependrà directament de la potència dels electrodomèstics i del temps que els tinguem engegats.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="p-5 bg-slate-50 rounded-lg border border-slate-150">
+                        <h4 class="font-semibold text-slate-900 flex items-center gap-2 mb-3">
+                            <i data-lucide="hourglass" class="w-5 h-5 text-blue-600"></i>
+                            Relació Potència - Temps
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            L'energia de la llar és el resultat directe de multiplicar la potència de cadascun dels aparells que tenim connectats pel temps d'ús real que fan d'aquesta electricitat.
+                        </p>
                     </div>
-                </div>
-                <div class="space-y-2 text-xs text-slate-400">
-                    <div class="flex justify-between border-b border-slate-800/60 pb-1">
-                        <span><strong>E</strong> &rarr; Energia consumida</span>
-                        <span class="text-slate-300 font-semibold">kWh</span>
-                    </div>
-                    <div class="flex justify-between border-b border-slate-800/60 pb-1">
-                        <span><strong>P</strong> &rarr; Potència nominal</span>
-                        <span class="text-slate-300 font-semibold">kW (1 kW = 1000 W)</span>
-                    </div>
-                    <div class="flex justify-between pb-1">
-                        <span><strong>t</strong> &rarr; Temps d'ús</span>
-                        <span class="text-slate-300 font-semibold">hores (h)</span>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-
-        <!-- SECCIÓ DE GRÀFICS D'ALTA RESOLUCIÓ (AUTOMÀTICAMENT VINCULATS) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-
-            <!-- Gràfic de Potències -->
-            <div class="textbook-card p-6 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Esquema 1: Rangs de Potència en kW</h3>
-                    <p class="text-sm text-slate-500 mb-4">Representació acadèmica dels valors de potència mínima i màxima nominals en els electrodomèstics més habituals de la llar.</p>
-                </div>
-                <div class="bg-slate-50 border border-slate-100 rounded-lg p-2 flex justify-center items-center">
-                    <!-- Si l'usuari té la imatge al mateix repositori, es visualitzarà correctament -->
-                    <img src="potencies_textbook.svg" alt="Gràfic de Potència dels Electrodomèstics" class="max-h-80 object-contain w-full" onerror="this.src='potencies_textbook.png'; this.onerror=function(){this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Gr%C3%A0fic+de+Pot%C3%A8ncies+nominals+en+kW'}">
-                </div>
-                <span class="text-[11px] text-slate-400 mt-2 block text-center italic">Figura 1.1: Valors obtinguts de les fitxes i especificacions tècniques de cada aparell.</span>
-            </div>
-
-            <!-- Certificat Energètic i la seva Transició -->
-            <div class="textbook-card p-6 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-900 mb-2">Esquema 2: L'Escala de Certificat Energètic</h3>
-                    <p class="text-sm text-slate-500 mb-4">Els certificats energètics han canviat per adaptar-se a electrodomèstics amb consums molt inferiors, simplificant la classificació de la A a la G.</p>
-                </div>
-                <div class="bg-slate-50 border border-slate-100 rounded-lg p-2 flex justify-center items-center">
-                    <img src="escala_eficiencia.svg" alt="Escala de Certificat d'Eficiència Energètica" class="max-h-80 object-contain w-full" onerror="this.src='escala_eficiencia.png'; this.onerror=function(){this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Escala+de+Certificats+A-G'}">
-                </div>
-                <span class="text-[11px] text-slate-400 mt-2 block text-center italic">Figura 1.2: Classificació oficial actual d'eficiència sense els antics indicadors de +.</span>
-            </div>
-
-        </div>
-
-        <!-- SIMULADOR INTERACTIU DE CONSUM DOMÈSTIC -->
-        <div class="textbook-card p-8 mb-10 shadow-sm border border-slate-200">
-            <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
-                <span class="text-blue-600">🛠️</span> Pràctica Interactiva: Simulació de Consum i Factura Elèctrica
-            </h2>
-            <p class="text-sm text-slate-500 mb-6 border-b border-slate-100 pb-4">
-                Configureu el temps d'ús diari dels aparells d'un habitatge real i proveu a canviar la potència contractada per observar-ne la repercussió a la factura i l'eficiència global.
-            </p>
-
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                <!-- Ajustament d'aparells (inputs) -->
-                <div class="lg:col-span-2 space-y-4">
-                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Configuració d'ús diari</h3>
-
-                    <div class="space-y-3">
-
-                        <!-- Nevera -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-slate-50/50 rounded-lg border border-slate-200/60">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="power-nevera" checked disabled class="h-4.5 w-4.5 rounded border-slate-300 text-blue-600">
-                                <div>
-                                    <span class="font-semibold text-sm text-slate-800">Nevera</span>
-                                    <span class="text-[11px] text-slate-400 block">Sempre engegada, consum lineal</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                                <div class="text-xs text-slate-500">
-                                    <input type="range" id="kw-nevera" min="0.250" max="0.350" step="0.010" value="0.280" oninput="updateRangeLabel('nevera'); calculateEnergy();" class="w-24 sm:w-28 accent-blue-600">
-                                    <span id="val-nevera" class="font-mono ml-2 inline-block w-16 text-right">0.280 kW</span>
-                                </div>
-                                <div class="text-xs text-slate-500">
-                                    <input type="number" id="hours-nevera" min="1" max="24" value="24" readonly class="w-12 bg-slate-100 border border-slate-300 rounded text-center px-1 font-mono"> h
-                                </div>
-                                <div class="text-sm font-semibold text-slate-700 font-mono w-16 text-right" id="kwh-nevera">0.00 kWh</div>
-                            </div>
-                        </div>
-
-                        <!-- Vitroceràmica -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-slate-50/50 rounded-lg border border-slate-200/60">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="power-vitro" checked onchange="calculateEnergy();" class="h-4.5 w-4.5 rounded border-slate-300 text-blue-600">
-                                <div>
-                                    <span class="font-semibold text-sm text-slate-800">Vitroceràmica (3 fogons)</span>
-                                    <span class="text-[11px] text-slate-400 block">Potència variable segons els fogons actius</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                                <div class="text-xs text-slate-500">
-                                    <input type="range" id="kw-vitro" min="0.900" max="2.000" step="0.100" value="1.200" oninput="updateRangeLabel('vitro'); calculateEnergy();" class="w-24 sm:w-28 accent-blue-600">
-                                    <span id="val-vitro" class="font-mono ml-2 inline-block w-16 text-right">1.200 kW</span>
-                                </div>
-                                <div class="text-xs text-slate-500">
-                                    <input type="number" id="hours-vitro" min="0" max="24" step="0.5" value="1.5" onchange="calculateEnergy();" class="w-12 border border-slate-300 rounded text-center px-1 font-mono"> h
-                                </div>
-                                <div class="text-sm font-semibold text-slate-700 font-mono w-16 text-right" id="kwh-vitro">0.00 kWh</div>
-                            </div>
-                        </div>
-
-                        <!-- Forn -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-slate-50/50 rounded-lg border border-slate-200/60">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="power-forn" onchange="calculateEnergy();" class="h-4.5 w-4.5 rounded border-slate-300 text-blue-600">
-                                <div>
-                                    <span class="font-semibold text-sm text-slate-800">Forn Elèctric</span>
-                                    <span class="text-[11px] text-slate-400 block">Consumeix el 8% de l'energia de la llar</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                                <div class="text-xs text-slate-500">
-                                    <input type="range" id="kw-forn" min="1.200" max="2.200" step="0.100" value="1.500" oninput="updateRangeLabel('forn'); calculateEnergy();" class="w-24 sm:w-28 accent-blue-600">
-                                    <span id="val-forn" class="font-mono ml-2 inline-block w-16 text-right">1.500 kW</span>
-                                </div>
-                                <div class="text-xs text-slate-500">
-                                    <input type="number" id="hours-forn" min="0" max="24" step="0.5" value="1.0" onchange="calculateEnergy();" class="w-12 border border-slate-300 rounded text-center px-1 font-mono"> h
-                                </div>
-                                <div class="text-sm font-semibold text-slate-700 font-mono w-16 text-right" id="kwh-forn">0.00 kWh</div>
-                            </div>
-                        </div>
-
-                        <!-- Rentadora -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-slate-50/50 rounded-lg border border-slate-200/60">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="power-rentadora" checked onchange="calculateEnergy();" class="h-4.5 w-4.5 rounded border-slate-300 text-blue-600">
-                                <div>
-                                    <span class="font-semibold text-sm text-slate-800">Rentadora</span>
-                                    <span class="text-[11px] text-slate-400 block">Reducció d'ús per canvis de temperatura</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                                <div class="text-xs text-slate-500">
-                                    <input type="range" id="kw-rentadora" min="1.500" max="2.200" step="0.100" value="1.800" oninput="updateRangeLabel('rentadora'); calculateEnergy();" class="w-24 sm:w-28 accent-blue-600">
-                                    <span id="val-rentadora" class="font-mono ml-2 inline-block w-16 text-right">1.800 kW</span>
-                                </div>
-                                <div class="text-xs text-slate-500">
-                                    <input type="number" id="hours-rentadora" min="0" max="24" step="0.5" value="1.0" onchange="calculateEnergy();" class="w-12 border border-slate-300 rounded text-center px-1 font-mono"> h
-                                </div>
-                                <div class="text-sm font-semibold text-slate-700 font-mono w-16 text-right" id="kwh-rentadora">0.00 kWh</div>
-                            </div>
-                        </div>
-
-                        <!-- Microones -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-slate-50/50 rounded-lg border border-slate-200/60">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="power-micro" checked onchange="calculateEnergy();" class="h-4.5 w-4.5 rounded border-slate-300 text-blue-600">
-                                <div>
-                                    <span class="font-semibold text-sm text-slate-800">Microones</span>
-                                    <span class="text-[11px] text-slate-400 block">L'aparell més eficient en relació potència-temps</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                                <div class="text-xs text-slate-500">
-                                    <input type="range" id="kw-micro" min="0.900" max="1.500" step="0.100" value="1.000" oninput="updateRangeLabel('micro'); calculateEnergy();" class="w-24 sm:w-28 accent-blue-600">
-                                    <span id="val-micro" class="font-mono ml-2 inline-block w-16 text-right">1.000 kW</span>
-                                </div>
-                                <div class="text-xs text-slate-500">
-                                    <input type="number" id="hours-micro" min="0" max="24" step="0.1" value="0.2" onchange="calculateEnergy();" class="w-12 border border-slate-300 rounded text-center px-1 font-mono"> h
-                                </div>
-                                <div class="text-sm font-semibold text-slate-700 font-mono w-16 text-right" id="kwh-micro">0.00 kWh</div>
-                            </div>
-                        </div>
-
-                        <!-- Aire Condicionat -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-3 bg-slate-50/50 rounded-lg border border-slate-200/60">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="power-clima" onchange="calculateEnergy();" class="h-4.5 w-4.5 rounded border-slate-300 text-blue-600">
-                                <div>
-                                    <span class="font-semibold text-sm text-slate-800">Aire Condicionat / Climatitzador</span>
-                                    <span class="text-[11px] text-slate-400 block">Depèn directament de la temperatura exterior</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-                                <div class="text-xs text-slate-500">
-                                    <input type="range" id="kw-clima" min="0.900" max="2.000" step="0.100" value="1.500" oninput="updateRangeLabel('clima'); calculateEnergy();" class="w-24 sm:w-28 accent-blue-600">
-                                    <span id="val-clima" class="font-mono ml-2 inline-block w-16 text-right">1.500 kW</span>
-                                </div>
-                                <div class="text-xs text-slate-500">
-                                    <input type="number" id="hours-clima" min="0" max="24" step="0.5" value="3.0" onchange="calculateEnergy();" class="w-12 border border-slate-300 rounded text-center px-1 font-mono"> h
-                                </div>
-                                <div class="text-sm font-semibold text-slate-700 font-mono w-16 text-right" id="kwh-clima">0.00 kWh</div>
-                            </div>
-                        </div>
-
+                    <div class="p-5 bg-slate-50 rounded-lg border border-slate-150">
+                        <h4 class="font-semibold text-slate-900 flex items-center gap-2 mb-3">
+                            <i data-lucide="clock" class="w-5 h-5 text-blue-600"></i>
+                            Discriminació Horària
+                        </h4>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            A més, si tenim una factura elèctrica amb discriminació horària reglamentada, també influirà directament el moment o hora en què engeguem els electrodomèstics.
+                        </p>
                     </div>
                 </div>
 
-                <!-- QUADRE DE RESULTATS (HUD ACADÈMIC) -->
-                <div class="bg-slate-50 p-6 rounded-xl border border-slate-200 flex flex-col justify-between">
+                <div class="p-5 bg-blue-50 rounded-lg border border-blue-200 flex items-start gap-4">
+                    <div class="p-2 bg-blue-600 text-white rounded-md shrink-0">
+                        <i data-lucide="file-text" class="w-5 h-5"></i>
+                    </div>
                     <div>
-                        <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Càlcul de Factura i Impacte</h3>
+                        <h4 class="font-semibold text-blue-900">Potència Contractada i Factura</h4>
+                        <p class="text-sm text-blue-800 mt-1">
+                            La factura elèctrica té, a més del consum variable, un càrrec de tipus fix referent a la <strong>potència contractada</strong>. Aquest import depèn dels aparells elèctrics que tenim connectats de manera simultània a l'habitatge.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-                        <!-- Potència Contractada -->
-                        <div class="mb-5">
-                            <label for="contracted-power" class="text-xs font-semibold text-slate-600 block mb-1">Tipus d'Instal·lació i Potència Contractada</label>
-                            <select id="contracted-power" onchange="calculateEnergy();" class="w-full text-xs font-semibold border-slate-300 rounded-md p-2 bg-white text-slate-700 shadow-sm">
-                                <optgroup label="Instal·lació Monofàsica (Comú)">
-                                    <option value="3.45-10.94" selected>3,45 kW - 10,94 €/mes</option>
-                                    <option value="4.60-14.51">4,60 kW - 14,51 €/mes</option>
-                                    <option value="5.75-18.23">5,75 kW - 18,23 €/mes</option>
-                                    <option value="6.90-21.87">6,90 kW - 21,87 €/mes</option>
-                                    <option value="8.05-25.52">8,05 kW - 25,52 €/mes</option>
-                                    <option value="9.20-29.16">9,20 kW - 29,16 €/mes</option>
+            <!-- SECCIÓ 2: CÀLCUL DE L'ENERGIA -->
+            <div id="calcul-energia" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 2</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">La Fórmula de Càlcul d'Energia</h2>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed">
+                    Per realitzar l'auditoria elèctrica o conèixer el consum d'un aparell a casa, s'utilitza una equació fonamental en l'electrotècnia que relaciona la potència consumida amb el període d'activitat.
+                </p>
+
+                <!-- Fórmula Box -->
+                <div class="formula-box text-white rounded-xl p-8 flex flex-col items-center justify-center text-center shadow-md my-8">
+                    <span class="text-xs uppercase tracking-widest text-emerald-300 font-bold mb-2">Equació Fonamental de la Unitat</span>
+                    <div class="text-3xl md:text-5xl font-extrabold tracking-wider my-4 font-mono">E = P &middot; t</div>
+                    <div class="max-w-md text-sm text-slate-100 mt-2">
+                        Habitualment per a consums d’habitatges s’empra el <strong>kWh</strong> com a unitat de referència pràctica.
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 rounded-lg p-5 border border-slate-200">
+                    <h4 class="font-semibold text-slate-900 mb-3">Unitats de la fórmula:</h4>
+                    <ul class="space-y-3.5 text-sm text-slate-700">
+                        <li class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold font-mono">E</span>
+                            <div><strong>Energia consumida</strong>, mesurada pràcticament en Quilowatts-hora (<strong class="text-blue-700">kWh</strong>).</div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold font-mono">P</span>
+                            <div><strong>Potència de l'aparell</strong>, expressada en Quilowatts (<strong class="text-emerald-700">kW</strong>).</div>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold font-mono">t</span>
+                            <div><strong>Temps de funcionament</strong> de l'aparell, expressat en hores (<strong class="text-amber-700">h</strong>).</div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-slate-100 border-l-4 border-slate-500 rounded-r-lg text-sm text-slate-700">
+                    <p class="font-semibold mb-1">On trobem la potència dels aparells?</p>
+                    Per a saber exactament quant consumeixen els aparells, ens podem fixar directament amb les <strong>especificacions tècniques o placa de característiques</strong> de cadascun d'ells.
+                </div>
+            </div>
+
+            <!-- SECCIÓ 3: POTÈNCIA D'APARELLS -->
+            <div id="potencies-aparells" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 3</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">Potències de referència d'Electrodomèstics</h2>
+                </div>
+
+                <p class="text-slate-600">
+                    Rangs mitjans de potència elèctrica de treball (expressats de manera formal en kW) per a la realització de problemes i auditories elèctriques:
+                </p>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 items-start">
+                    <div class="overflow-x-auto rounded-lg border border-slate-200">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                                    <th class="py-3 px-4">Electrodomèstic</th>
+                                    <th class="py-3 px-4">Potència de Treball (kW)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-sm text-slate-700">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Nevera</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">0,250 - 0,350 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Vitroceràmica</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">0,900 - 2,000 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Microones</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">0,900 - 1,500 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Forn</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">1,200 - 2,200 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Rentavaixelles</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">1,500 - 2,200 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Rentadora</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">1,500 - 2,200 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Televisió</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">0,150 - 0,400 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Aire condicionat</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">0,900 - 2,000 kW</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="py-3 px-4 font-medium text-slate-950">Calefacció</td>
+                                    <td class="py-3 px-4 font-mono text-blue-700">1,000 - 2,500 kW</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+                            <span class="text-xs font-semibold text-slate-450 block mb-2">Gràfic d'estudi de la unitat (kW):</span>
+                            <!-- Enllaç o càrrega del gràfic acadèmic SVG de potències de la lliçó -->
+                            <img src="./potencies_textbook.svg" alt="Gràfic Potències de Referència en kW" class="w-full h-auto rounded border border-slate-200 bg-white shadow-sm" onerror="this.src='https://lh3.googleusercontent.com/notebooklm/AKYWMX-7oHVCG8zLzBILL3GWlNZEhnW74fXPhLGSSVco34coQJaReNDYnqlleFW8lDdpBJExqgx53F6S7OUAGuV8wH0gBl_Mt6LrdxfvBSVkUngqeyFUtKoYnXaBZA6sTdkN0HEJuUHSrkVNdgs8c4fsFxQnV1eeTWQ';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓ 4: CASOS PARTICULARS -->
+            <div id="casos-particulars" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 4</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">Casos Particulars d'Estudi</h2>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed">
+                    No tots els equips de l'habitatge realitzen una despesa energètica constant o lineal. És fonamental conèixer les següents especificitats tècniques:
+                </p>
+
+                <div class="space-y-4">
+                    <!-- Cas Nevera -->
+                    <div class="p-6 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/4 shrink-0 flex items-center justify-center bg-blue-100 rounded-lg p-4">
+                            <i data-lucide="snowflake" class="w-12 h-12 text-blue-600"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="text-lg font-bold text-slate-900">La Nevera (Funcionament Continu)</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                En el cas especial de la nevera, al estar sempre connectada i engegada de manera indefinida, <strong>ens hem de fixar obligatòriament en el consum anual</strong>, el qual ve indicat directament a la seva placa d'especificacions o característiques de consum. En funció del certificat energètic, el consum global anual serà clarament major o menor.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Cas Resta d'aparells -->
+                    <div class="p-6 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row gap-6">
+                        <div class="md:w-1/4 shrink-0 flex items-center justify-center bg-emerald-100 rounded-lg p-4">
+                            <i data-lucide="settings" class="w-12 h-12 text-emerald-600"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="text-lg font-bold text-slate-900">La resta d'aparells (Funcionament Variable)</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                Pel que fa a la resta d'aparells d'ús intermitent, ens hem de fixar bé en la seva forma d'utilització real i característiques de funcionament:
+                            </p>
+                            <ul class="list-disc pl-5 text-sm text-slate-700 space-y-1.5">
+                                <li><strong>Vitroceràmica:</strong> Per exemple, si la vitroceràmica disposa d'un total de 3 fogons i tan sols en tenim encès 1, la potència utilitzada no arribarà en cap cas al 100% de la seva potència nominal regulada.</li>
+                                <li><strong>Equips de Climatització:</strong> El consum real tant de l'aire condicionat com de la calefacció dependrà directament de la temperatura interior programada i de la temperatura exterior real de l'entorn.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓ 5: CERTIFICATS ENERGÈTICS -->
+            <div id="certificats" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 5</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">Certificats i Eficiència Energètica</h2>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed">
+                    Així com hem comentat en el cas de la nevera, el certificat energètic ens indica si els aparells comercialitzats són eficients o no en comparació directa amb la mitjana de referència de la resta del mercat d'electrodomèstics.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start my-6">
+                    <div class="space-y-4">
+                        <div class="p-5 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                            <h4 class="font-bold text-blue-900 text-sm">El canvi i unificació de l'escala de lletres</h4>
+                            <p class="text-xs text-blue-800 mt-2 leading-relaxed">
+                                <strong>Els certificats energètics de la UE han canviat de forma oficial.</strong> Les lletres que defineixen la classificació d'eficiència s'han hagut d'adaptar gradualment als nous electrodomèstics actuals, que ofereixen un consum de corrent elèctric clarament inferior.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-lg border border-slate-200 bg-slate-50 text-xs text-slate-600 leading-relaxed">
+                            <strong class="text-slate-900 block mb-1">Evolució de l'escala (Taula Antiga):</strong>
+                            L'antiga escala d'eficiència (amb valors de classificació A+++, A++ o A+) resultava confusa i havia quedat desfasada per l'evolució de la tècnica d'estalvi. Per això es va decidir reescalar totalment el sistema cap a una nova etiqueta unificada de la A a la G.
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-xl border border-slate-200 p-4">
+                        <span class="text-xs font-semibold text-slate-400 block mb-2">Escala d'eficiència (Model UE)</span>
+                        <img src="./escala_eficiencia.svg" alt="Escala de Certificat d'Eficiència Energètica" class="w-full h-auto rounded border border-slate-200 bg-white shadow-sm" onerror="this.src='https://lh3.googleusercontent.com/notebooklm/AKYWMX9zp6yK0GPHZmgK5Cq-u9_2xg72mtrHYuh0X5addrSFxFVh85D6fp3auSzmXe5UjXfESxE3rQcz9GYgpSPfM0PCAHYxv8wMLg8WafQTLpIiT1BCLi-oXxcKU7XZLZ7kety-Jum2Z0eo6zW9AH06uK7L3xx_XuU';">
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓ 6: DADES CLAU D'ESTALVI -->
+            <div id="dades-clau" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 6</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">Dades Clau de Consum i Consells d'Estalvi</h2>
+                </div>
+
+                <p class="text-slate-600">
+                    A continuació es recullen de manera directa totes les dades empíriques de referència i mètodes d'estalvi de la unitat d'estudi:
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    <!-- Nevera 20% -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-blue-50 text-blue-700 rounded-lg shrink-0">
+                            <i data-lucide="snowflake" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider block">Nevera (20% del consum)</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                La nevera domèstica consumeix de mitjana **gairebé un 20%** de la totalitat de l'energia de l'habitatge.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Rentadora -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-emerald-50 text-emerald-700 rounded-lg shrink-0">
+                            <i data-lucide="settings" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-emerald-600 uppercase tracking-wider block">Rentadora (Estalvi de fins al 80%)</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                En funció del mode que emprem de la rentadora (rentat a 30ºC, 40ºC o 50ºC) es pot reduir significativament el consum d'energia **fins a un 80%**.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Vitro vs Inducció -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-orange-50 text-orange-700 rounded-lg shrink-0">
+                            <i data-lucide="flame" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-orange-600 uppercase tracking-wider block">Vitroceràmica vs Inducció</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                La vitroceràmica consumeix un **45% més** que la inducció. Es pot estalviar de forma senzilla baixant el nivell de temperatura quan l'aigua de cocció ja està bullint.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Forn -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-red-50 text-red-700 rounded-lg shrink-0">
+                            <i data-lucide="cpu" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-red-600 uppercase tracking-wider block">Forn Elèctric (8% del consum)</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                Suposa el **8% del consum d'energia** de l'habitatge. Es pot estalviar apagant el forn completament entre 5 i 10 minuts abans del previst per aprofitar tota la calor residual acumulada a la cavitat de cocció.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Rentavaixelles -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-indigo-50 text-indigo-700 rounded-lg shrink-0">
+                            <i data-lucide="droplet" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-indigo-600 uppercase tracking-wider block">Rentavaixelles (6% del consum)</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                Suposa un total del **6% del consum d'energia** de la llar. Utilitzar de manera recurrent programes curts i de menor temperatura suposarà importants estalvis energètics.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Assecadora -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-pink-50 text-pink-700 rounded-lg shrink-0">
+                            <i data-lucide="wind" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-pink-600 uppercase tracking-wider block">Assecadora (Consum Doble)</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                L'assecadora consumeix el **doble de corrent** que una rentadora estàndard. Només un total del **28%** dels habitatges de l'estat disposen d'aquest tipus d'aparell.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Microones -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-yellow-50 text-yellow-700 rounded-lg shrink-0">
+                            <i data-lucide="award" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-yellow-600 uppercase tracking-wider block">L'aparell més eficient</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                El microones és l'electrodomèstic més eficient de la cuina. Pot escalfar 1 litre sencer d'aigua des de 15ºC fins a 90ºC de temperatura amb un consum de només **0,10 kWh**.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Il·luminació LED -->
+                    <div class="p-4 bg-white border border-slate-200 rounded-lg shadow-sm flex gap-4 items-start">
+                        <div class="p-2.5 bg-teal-50 text-teal-700 rounded-lg shrink-0">
+                            <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-teal-600 uppercase tracking-wider block">Il·luminació (Estalvi del 88%)</span>
+                            <p class="text-sm text-slate-700 mt-1">
+                                Passar d'utilitzar bombetes incandescents tradicionals a noves bombetes de tecnologia LED suposa un estalvi energètic immediat del **88%** en la línia de consum d'il·luminació.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECCIÓ 7: POTÈNCIA CONTRACTADA -->
+            <div id="potencia-contractada" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 7</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">La Potència Contractada a preu de cost</h2>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed">
+                    La potència elèctrica que es contracta del proveïdor limita el nombre de receptors que podem tenir engegats alhora a la llar. Estudiar bé els hàbits i **baixar la potència contractada** si és possible pot suposar un important estalvi econòmic a llarg termini a la factura.
+                </p>
+
+                <div class="p-4 bg-blue-50 border border-blue-150 text-xs text-blue-850 rounded-lg">
+                    A continuació es descriuen els preus fixos de potència regulada segons el tipus d'instal·lació elèctrica reglamentada en un habitatge (dades oficials de la lliçó):
+                </div>
+
+                <!-- Taula comparativa de tarifes -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
+
+                    <!-- Monofàsica -->
+                    <div class="border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                        <div class="bg-slate-100 px-4 py-3 border-b border-slate-200">
+                            <h4 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <i data-lucide="home" class="w-4 h-4 text-slate-600"></i>
+                                Instal·lació Monofàsica
+                            </h4>
+                        </div>
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
+                                    <th class="py-2.5 px-3">Potència (kW)</th>
+                                    <th class="py-2.5 px-3">Preu al Mes</th>
+                                    <th class="py-2.5 px-3">Preu a l'Any</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-700">
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">3,45 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">10,94 €</td>
+                                    <td class="py-2.5 px-3 font-mono">131 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">4,60 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">14,51 €</td>
+                                    <td class="py-2.5 px-3 font-mono">175 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">5,75 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">18,23 €</td>
+                                    <td class="py-2.5 px-3 font-mono">219 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">6,90 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">21,87 €</td>
+                                    <td class="py-2.5 px-3 font-mono">262 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">8,05 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">25,52 €</td>
+                                    <td class="py-2.5 px-3 font-mono">306 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">9,20 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">29,16 €</td>
+                                    <td class="py-2.5 px-3 font-mono">350 €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Trifàsica -->
+                    <div class="border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+                        <div class="bg-slate-100 px-4 py-3 border-b border-slate-200">
+                            <h4 class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                                <i data-lucide="building" class="w-4 h-4 text-slate-600"></i>
+                                Instal·lació Trifàsica
+                            </h4>
+                        </div>
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 font-bold border-b border-slate-200">
+                                    <th class="py-2.5 px-3">Potència (kW)</th>
+                                    <th class="py-2.5 px-3">Preu al Mes</th>
+                                    <th class="py-2.5 px-3">Preu a l'Any</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-slate-700">
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">2,425 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">7,69 €</td>
+                                    <td class="py-2.5 px-3 font-mono">92,25 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">3,464 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">10,98 €</td>
+                                    <td class="py-2.5 px-3 font-mono">131,77 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">5,196 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">16,47 €</td>
+                                    <td class="py-2.5 px-3 font-mono">191,66 €</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2.5 px-3 font-mono font-bold">6,928 kW</td>
+                                    <td class="py-2.5 px-3 font-mono">21,87 €</td>
+                                    <td class="py-2.5 px-3 font-mono">263,54 €</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECCIÓ 8: CALCULADORA -->
+            <div id="simulador" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 8</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">Calculadora Acadèmica de l'Habitatge</h2>
+                </div>
+
+                <p class="text-slate-600 leading-relaxed">
+                    Eina d'exercicis pràctics i d'auditoria. Permet calcular de manera completament matemàtica la fórmula de consum <strong class="font-mono text-blue-600">E = P &middot; t</strong> i els costos fixos i variables del temari:
+                </p>
+
+                <div class="bg-slate-50 rounded-xl border border-slate-200 p-6 space-y-6">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Configuració de Potència Contractada -->
+                        <div class="bg-white p-4 rounded-lg border border-slate-150">
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-2">1. Selecció de Potència Contractada</label>
+                            <select id="sel-potencia" onchange="calcularPreuTotal()" class="w-full text-sm bg-slate-50 border border-slate-300 rounded px-2.5 py-2 font-mono">
+                                <optgroup label="Instal·lació Monofàsica">
+                                    <option value="10.94">3,45 kW (10,94 €/mes)</option>
+                                    <option value="14.51" selected>4,60 kW (14,51 €/mes)</option>
+                                    <option value="18.23">5,75 kW (18,23 €/mes)</option>
+                                    <option value="21.87">6,90 kW (21,87 €/mes)</option>
+                                    <option value="25.52">8,05 kW (25,52 €/mes)</option>
+                                    <option value="29.16">9,20 kW (29,16 €/mes)</option>
                                 </optgroup>
                                 <optgroup label="Instal·lació Trifàsica">
-                                    <option value="2.425-7.69">2,425 kW - 7,69 €/mes</option>
-                                    <option value="3.464-10.98">3,464 kW - 10,98 €/mes</option>
-                                    <option value="5.196-16.47">5,196 kW - 16,47 €/mes</option>
-                                    <option value="6.928-21.87">6,928 kW - 21,87 €/mes</option>
+                                    <option value="7.69">2,425 kW (7,69 €/mes)</option>
+                                    <option value="10.98">3,464 kW (10,98 €/mes)</option>
+                                    <option value="16.47">5,196 kW (16,47 €/mes)</option>
+                                    <option value="21.87">6,928 kW (21,87 €/mes)</option>
                                 </optgroup>
                             </select>
                         </div>
 
-                        <!-- Càlcul de Consum Total Diari -->
-                        <div class="space-y-4 mb-6">
-                            <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                                <span class="text-xs text-slate-500 font-medium">Consum total diari:</span>
-                                <span id="total-energy" class="font-mono font-bold text-slate-950 text-base">0.00 kWh</span>
+                        <!-- Resultats -->
+                        <div class="bg-slate-900 text-white p-4 rounded-lg flex flex-col justify-between">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Resum de Càlcul</span>
+                            <div class="grid grid-cols-3 gap-2 text-center my-2">
+                                <div>
+                                    <span class="text-[9px] text-slate-400 block uppercase">Consum</span>
+                                    <span id="tot-kwh" class="text-sm font-bold font-mono text-emerald-400">0.00 kWh</span>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] text-slate-400 block uppercase">Factura/Mes</span>
+                                    <span id="tot-factura" class="text-sm font-bold font-mono text-blue-400">0.00 €</span>
+                                </div>
+                                <div>
+                                    <span class="text-[9px] text-slate-400 block uppercase">CO2/Dia</span>
+                                    <span id="tot-co2" class="text-sm font-bold font-mono text-red-400">0.0 kg</span>
+                                </div>
                             </div>
-                            <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                                <span class="text-xs text-slate-500 font-medium">Factura aproximada (Mes):</span>
-                                <span id="total-cost" class="font-mono font-bold text-blue-600 text-lg">0.00 €</span>
-                            </div>
-                            <div class="flex justify-between items-center border-b border-slate-200 pb-2">
-                                <span class="text-xs text-slate-500 font-medium">Empremta de carboni diària:</span>
-                                <span id="hud-co2" class="font-mono font-bold text-slate-800 text-sm">0.0 kg CO₂</span>
-                            </div>
+                            <div class="text-[9px] text-slate-500 text-right font-mono">Cost d'energia variable: 0,15 € / kWh</div>
                         </div>
                     </div>
 
-                    <!-- Qualificació Energètica Final -->
-                    <div class="bg-white p-4 rounded-lg border border-slate-200 flex flex-col items-center">
-                        <span class="text-[10px] text-slate-400 font-semibold tracking-wider uppercase mb-2">Classe de Consum d'Energia</span>
-                        <div id="efficiency-badge" class="px-5 py-2 rounded-md text-sm font-bold tracking-wider uppercase">Classe A</div>
+                    <!-- Electrodomèstics reals de la UT1 -->
+                    <div class="space-y-4">
+                        <span class="block text-xs font-bold text-slate-700 uppercase tracking-wider">2. Configuració de Càrrega d'Aparells</span>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Nevera (0.250 - 0.350 kW, 24h) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-nevera" checked onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Nevera (Ús continu)</span>
+                                    </label>
+                                    <span id="val-nevera" class="text-xs font-mono text-blue-600 font-bold">0.300 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-nevera" min="0.250" max="0.350" step="0.01" value="0.300" oninput="actualitzarRang('nevera')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-nevera" value="24" disabled class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center bg-slate-100">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Vitroceràmica (0.900 - 2.000 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-vitro" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Vitroceràmica</span>
+                                    </label>
+                                    <span id="val-vitro" class="text-xs font-mono text-blue-600 font-bold">1.500 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-vitro" min="0.900" max="2.000" step="0.05" value="1.500" oninput="actualitzarRang('vitro')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-vitro" min="0" max="24" step="0.5" value="1.5" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Microones (0.900 - 1.500 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-micro" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Microones</span>
+                                    </label>
+                                    <span id="val-micro" class="text-xs font-mono text-blue-600 font-bold">1.200 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-micro" min="0.900" max="1.500" step="0.05" value="1.200" oninput="actualitzarRang('micro')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-micro" min="0" max="24" step="0.1" value="0.5" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Forn (1.200 - 2.200 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-forn" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Forn Elèctric</span>
+                                    </label>
+                                    <span id="val-forn" class="text-xs font-mono text-blue-600 font-bold">1.800 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-forn" min="1.200" max="2.200" step="0.05" value="1.800" oninput="actualitzarRang('forn')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-forn" min="0" max="24" step="0.5" value="1.0" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rentadora (1.500 - 2.200 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-rentadora" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Rentadora</span>
+                                    </label>
+                                    <span id="val-rentadora" class="text-xs font-mono text-blue-600 font-bold">1.800 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-rentadora" min="1.500" max="2.200" step="0.05" value="1.800" oninput="actualitzarRang('rentadora')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-rentadora" min="0" max="24" step="0.5" value="1.0" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rentavaixelles (1.500 - 2.200 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-rentavaixelles" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Rentavaixelles</span>
+                                    </label>
+                                    <span id="val-rentavaixelles" class="text-xs font-mono text-blue-600 font-bold">1.900 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-rentavaixelles" min="1.500" max="2.200" step="0.05" value="1.900" oninput="actualitzarRang('rentavaixelles')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-rentavaixelles" min="0" max="24" step="0.5" value="1.0" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Climatització (0.900 - 2.000 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-clima" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Aire condicionat / Clima</span>
+                                    </label>
+                                    <span id="val-clima" class="text-xs font-mono text-blue-600 font-bold">1.500 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-clima" min="0.900" max="2.000" step="0.05" value="1.500" oninput="actualitzarRang('clima')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-clima" min="0" max="24" step="0.5" value="4.0" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Televisió (0.150 - 0.400 kW) -->
+                            <div class="bg-white p-4 rounded-lg border border-slate-150 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-900">
+                                        <input type="checkbox" id="chk-tv" onchange="calcularPreuTotal()" class="rounded text-blue-600 focus:ring-blue-500">
+                                        <span>Televisió</span>
+                                    </label>
+                                    <span id="val-tv" class="text-xs font-mono text-blue-600 font-bold">0.250 kW</span>
+                                </div>
+                                <div class="flex gap-4 items-center">
+                                    <div class="flex-1">
+                                        <span class="text-[10px] text-slate-400 block">Potència (kW):</span>
+                                        <input type="range" id="kw-tv" min="0.150" max="0.400" step="0.01" value="0.250" oninput="actualitzarRang('tv')" onchange="calcularPreuTotal()" class="w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                                    </div>
+                                    <div class="w-16">
+                                        <span class="text-[10px] text-slate-400 block">Temps (h):</span>
+                                        <input type="number" id="h-tv" min="0" max="24" step="0.5" value="3.0" onchange="calcularPreuTotal()" class="w-full text-xs font-mono border rounded px-1 py-0.5 text-center">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
-
             </div>
-        </div>
 
-        <!-- CONSELLS D'EFICIÈNCIA I BONES PRÀCTIQUES -->
-        <div class="textbook-card p-8">
-            <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2 border-b border-slate-100 pb-4">
-                <span class="text-blue-600">💡</span> Guia d'Eficiència Energètica i Bones Pràctiques (UT1)
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <!-- Nevera -->
-                <div class="p-5 rounded-lg border border-slate-200/80 bg-white shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2.5 mb-3">
-                            <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">01</div>
-                            <h4 class="font-bold text-slate-800 text-sm">Nevera: El Consum Silent</h4>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                            La nevera consumeix gairebé un <strong>20% de l’energia total</strong> de l'habitatge, convertint-se en l'aparell amb el pes de consum més elevat de la llar a causa del seu funcionament ininterromput les 24 hores del dia.
-                        </p>
-                    </div>
+            <!-- SECCIÓ 9: TASQUES -->
+            <div id="tasques" class="tab-content space-y-6">
+                <div class="border-b border-slate-200 pb-4">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Apartat 9</span>
+                    <h2 class="text-2xl lg:text-3xl font-extrabold text-slate-900 mt-1">Activitats i Avaluació (UT1)</h2>
                 </div>
 
-                <!-- Rentadora -->
-                <div class="p-5 rounded-lg border border-slate-200/80 bg-white shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2.5 mb-3">
-                            <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">02</div>
-                            <h4 class="font-bold text-slate-800 text-sm">Rentadora: Temperatura d'Ús</h4>
+                <p class="text-slate-600">
+                    A continuació es descriuen les activitats acadèmiques obligatòries associades a aquesta unitat didàctica (UT1) [20]:
+                </p>
+
+                <div class="space-y-4">
+
+                    <!-- Tasca 1.1 -->
+                    <div class="p-5 bg-white border border-slate-200 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-3">
+                            <h4 class="font-bold text-slate-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">Activitat</span>
+                                Tasca 1.1: Auditoria d'Aparells a la Llar
+                            </h4>
+                            <span class="text-xs text-slate-450 font-medium">Lliurament PDF</span>
                         </div>
-                        <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                            En funció del mode i temperatura d'escalfament de l'aigua que emprem a la rentadora (30 ºC, 40 ºC o 50 ºC) es pot reduir significativament el seu consum general <strong>fins a un 80%</strong>. Prioritza els rentats en fred!
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Busca la placa de característiques tècniques de com a mínim 5 aparells elèctrics de la teva llar (incloent obligatòriament la nevera, el microones i la vitroceràmica o fogó) [3, 5, 7]. Anota la seva potència nominal en kW i calcula l'energia teòrica consumida durant un mes d'ús mitjà segons les hores de funcionament estimat.
                         </p>
                     </div>
-                </div>
 
-                <!-- Vitroceràmica -->
-                <div class="p-5 rounded-lg border border-slate-200/80 bg-white shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2.5 mb-3">
-                            <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">03</div>
-                            <h4 class="font-bold text-slate-800 text-sm">Vitroceràmica vs Inducció</h4>
+                    <!-- Tasca 1.2 -->
+                    <div class="p-5 bg-white border border-slate-200 rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-2 mb-3">
+                            <h4 class="font-bold text-slate-900 flex items-center gap-2">
+                                <span class="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs">Activitat</span>
+                                Tasca 1.2: Anàlisi d'Eficiència de l'Etiqueta
+                            </h4>
+                            <span class="text-xs text-slate-450 font-medium">Lliurament PDF</span>
                         </div>
-                        <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                            La vitroceràmica convencional consumeix un <strong>45% més d'energia</strong> que la placa d'inducció elèctrica. Com a bona pràctica d'estalvi, abaixa o apaga el fogó quan l'aigua assoleixi el punt de bullida.
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Observa la imatge comparativa entre l'antic i el nou etiquetatge de certificació energètica de la Unió Europea [11]. Explica de manera raonada per què s'ha decidit eliminar els nivells de "A+", "A++" i "A+++" i reescalar totalment el consum en lletres de la A a la G, i calcula la diferència de consum d'una llar de referència utilitzant els paràmetres estimats de consum.
                         </p>
                     </div>
-                </div>
 
-                <!-- Forn -->
-                <div class="p-5 rounded-lg border border-slate-200/80 bg-white shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2.5 mb-3">
-                            <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">04</div>
-                            <h4 class="font-bold text-slate-800 text-sm">Forn: Calor Residual</h4>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                            El forn elèctric suposa el <strong>8% del consum total</strong> de l'habitatge. Una forma excel·lent d'estalviar és apagar completament el forn entre 5 i 10 minuts abans de finalitzar la cocció, aprofitant l'energia acumulada.
-                        </p>
-                    </div>
                 </div>
-
-                <!-- Rentavaixelles -->
-                <div class="p-5 rounded-lg border border-slate-200/80 bg-white shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2.5 mb-3">
-                            <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">05</div>
-                            <h4 class="font-bold text-slate-800 text-sm">Rentavaixelles: Programes Curts</h4>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                            Aquest aparell representa el <strong>6% de l’energia</strong> de casa nostra. Configurar i utilitzar programes de rentat curts (mode ECO) i a una menor temperatura d'aigua generarà un estalvi net de consum immediat.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Il·luminació LED -->
-                <div class="p-5 rounded-lg border border-slate-200/80 bg-white shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-2.5 mb-3">
-                            <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm">06</div>
-                            <h4 class="font-bold text-slate-800 text-sm">Il·luminació: Revolució LED</h4>
-                        </div>
-                        <p class="text-xs text-slate-600 leading-relaxed text-justify">
-                            Canviar els vells sistemes de bombetes incandescents tradicionals cap a la il·luminació amb tecnologia LED pot suposar un important <strong>estalvi energètic del 88%</strong> en el total dedicat a la il·luminació d'espais.
-                        </p>
-                    </div>
-                </div>
-
             </div>
+
+        </main>
+    </div>
+
+    <!-- PIU DE PÀGINA -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-8 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 space-y-2">
+            <p><strong>UT1: Consum a un habitatge i eficiència energètica.</strong> Creat com a eina de reforç i lectura autònoma per als alumnes de l'assignatura de Manteniment de Sistemes Elèctrics i Electrònics de Vehicles / Eficiència Energètica (MEELE).</p>
+            <p class="text-slate-400">&copy; 2026 - Desenvolupat de forma neta i rigorosa a partir de les fonts de l'assignatura amb Gemini Notebook.</p>
         </div>
-
-    </main>
-
-    <!-- FOOTER DE LLIBRE DE TEXT -->
-    <footer class="max-w-6xl mx-auto px-6 mt-16 text-center text-xs text-slate-400 border-t border-slate-200 pt-8">
-        <p class="font-medium text-slate-500">Desenvolupament i anàlisi de Manteniment de Sistemes Elèctrics i Electrònics de Vehicles / Eficiència Energètica.</p>
-        <p class="mt-1">&copy; 2026 - Pàgina Educativa d'Estil Llibre de Text Modern. Generat mitjançant Gemini Notebook.</p>
     </footer>
 
-    <!-- LÒGICA DE CÀLCUL EN JAVASCRIPT -->
+    <!-- INTERACTIVITAT PER PESTANYES I CALCULADORA -->
     <script>
-        const appliancesList = {
-            nevera: { checkboxId: 'power-nevera', kwId: 'kw-nevera', hoursId: 'hours-nevera', outputId: 'kwh-nevera' },
-            vitro: { checkboxId: 'power-vitro', kwId: 'kw-vitro', hoursId: 'hours-vitro', outputId: 'kwh-vitro' },
-            forn: { checkboxId: 'power-forn', kwId: 'kw-forn', hoursId: 'hours-forn', outputId: 'kwh-forn' },
-            rentadora: { checkboxId: 'power-rentadora', kwId: 'kw-rentadora', hoursId: 'hours-rentadora', outputId: 'kwh-rentadora' },
-            micro: { checkboxId: 'power-micro', kwId: 'kw-micro', hoursId: 'hours-micro', outputId: 'kwh-micro' },
-            clima: { checkboxId: 'power-clima', kwId: 'kw-clima', hoursId: 'hours-clima', outputId: 'kwh-clima' }
-        };
+        // Inicialització d'icones Lucide
+        lucide.createIcons();
 
-        function updateRangeLabel(applianceKey) {
-            const range = document.getElementById(appliancesList[applianceKey].kwId);
-            const label = document.getElementById('val-' + applianceKey);
-            if (range && label) {
-                label.textContent = parseFloat(range.value).toFixed(3) + ' kW';
+        // Control de pestanyes lateral
+        function switchTab(tabId) {
+            // Amagar tots els blocs de contingut
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Treure classe activa dels botons de la barra lateral
+            document.querySelectorAll('aside nav button').forEach(btn => {
+                btn.classList.remove('sidebar-active');
+            });
+
+            // Mostrar el contingut triat
+            const activeTab = document.getElementById(tabId);
+            if (activeTab) {
+                activeTab.classList.add('active');
+            }
+
+            // Activar el botó corresponent
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('sidebar-active');
+            }
+
+            // Scroll cap a dalt de la finestra per facilitar la lectura
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Actualitzar etiqueta del range slider
+        function actualitzarRang(key) {
+            const slider = document.getElementById('kw-' + key);
+            const display = document.getElementById('val-' + key);
+            if (slider && display) {
+                display.textContent = parseFloat(slider.value).toFixed(3) + ' kW';
             }
         }
 
-        function calculateEnergy() {
-            let totalKwhDaily = 0;
+        // Càlcul real d'auditoria energètica (E = P * t)
+        function calcularPreuTotal() {
+            let totalKwhDiari = 0.0;
 
-            // Cicle de càlcul d'energia de cada aparell: E = P * t
-            for (const [key, config] of Object.entries(appliancesList)) {
-                const checkbox = document.getElementById(config.checkboxId);
-                const kwInput = document.getElementById(config.kwId);
-                const hoursInput = document.getElementById(config.hoursId);
-                const outputSpan = document.getElementById(config.outputId);
+            // Aparells de la UT1
+            const aparells = [
+                { key: 'nevera', checked: 'chk-nevera', kw: 'kw-nevera', h: 'h-nevera' },
+                { key: 'vitro', checked: 'chk-vitro', kw: 'kw-vitro', h: 'h-vitro' },
+                { key: 'micro', checked: 'chk-micro', kw: 'kw-micro', h: 'h-micro' },
+                { key: 'forn', checked: 'chk-forn', kw: 'kw-forn', h: 'h-forn' },
+                { key: 'rentadora', checked: 'chk-rentadora', kw: 'kw-rentadora', h: 'h-rentadora' },
+                { key: 'rentavaixelles', checked: 'chk-rentavaixelles', kw: 'kw-rentavaixelles', h: 'h-rentavaixelles' },
+                { key: 'clima', checked: 'chk-clima', kw: 'kw-clima', h: 'h-clima' },
+                { key: 'tv', checked: 'chk-tv', kw: 'kw-tv', h: 'h-tv' }
+            ];
 
-                if (checkbox.checked) {
-                    const kw = parseFloat(kwInput.value);
-                    const hours = parseFloat(hoursInput.value);
-                    const kwh = kw * hours;
-                    totalKwhDaily += kwh;
-                    outputSpan.textContent = kwh.toFixed(2) + ' kWh';
-                    outputSpan.classList.remove('text-slate-400');
-                    outputSpan.classList.add('text-slate-800');
-                } else {
-                    outputSpan.textContent = '0.00 kWh';
-                    outputSpan.classList.remove('text-slate-800');
-                    outputSpan.classList.add('text-slate-400');
+            // Càlcul de consum en kWh (E = P * t)
+            aparells.forEach(ap => {
+                const isChecked = document.getElementById(ap.checked).checked;
+                if (isChecked) {
+                    const kwValue = parseFloat(document.getElementById(ap.kw).value);
+                    const hValue = parseFloat(document.getElementById(ap.h).value);
+                    totalKwhDiari += (kwValue * hValue);
                 }
-            }
+            });
 
-            // Actualització del valor de consum diari total
-            document.getElementById('total-energy').textContent = totalKwhDaily.toFixed(2) + ' kWh';
+            // Actualització a la interfície
+            document.getElementById('tot-kwh').textContent = totalKwhDiari.toFixed(2) + ' kWh';
 
-            // Impacte ambiental (Factor aproximat de 0,25 kg de CO2 per kWh produït)
-            const co2 = totalKwhDaily * 0.25;
-            document.getElementById('hud-co2').textContent = co2.toFixed(1) + ' kg CO₂';
+            // Càlcul aproximat de CO2 (Factor mig 0.25 kg CO2 per kWh)
+            const co2Value = totalKwhDiari * 0.25;
+            document.getElementById('tot-co2').textContent = co2Value.toFixed(1) + ' kg';
 
-            // Selecció de potència contractada
-            const powerSelect = document.getElementById('contracted-power');
-            const [contractedKw, monthlyFixedPrice] = powerSelect.value.split('-').map(parseFloat);
+            // Càlcul del cost total mensual:
+            // Terme fix de potència (el seleccionat al dropdown)
+            const termeFix = parseFloat(document.getElementById('sel-potencia').value);
+            // Terme d'energia: Consum diari * 30 dies * cost aproximat de 0.15€/kWh
+            const termeVariable = totalKwhDiari * 30 * 0.15;
+            const facturaTotal = termeFix + termeVariable;
 
-            // Cost variable del consum (Preu aproximat mitjà de 0.15 € per kWh consumit)
-            const monthlyVariableCost = totalKwhDaily * 30 * 0.15;
-            const totalMonthlyCost = monthlyFixedPrice + monthlyVariableCost;
-            document.getElementById('total-cost').textContent = totalMonthlyCost.toFixed(2) + ' €';
-
-            // Classificació didàctica de l'eficiència de la llar simulada
-            const badge = document.getElementById('efficiency-badge');
-            badge.className = 'px-5 py-2 rounded-md text-sm font-bold tracking-wider uppercase text-center ';
-
-            if (totalKwhDaily < 5.0) {
-                badge.classList.add('badge-A');
-                badge.textContent = 'Classe A (Consum molt eficient)';
-            } else if (totalKwhDaily < 8.0) {
-                badge.classList.add('badge-B');
-                badge.textContent = 'Classe B (Consum eficient)';
-            } else if (totalKwhDaily < 11.0) {
-                badge.classList.add('badge-C');
-                badge.textContent = 'Classe C (Consum moderat)';
-            } else if (totalKwhDaily < 14.0) {
-                badge.classList.add('badge-D');
-                badge.textContent = 'Classe D (Consum estàndard)';
-            } else if (totalKwhDaily < 18.0) {
-                badge.classList.add('badge-E');
-                badge.textContent = 'Classe E (Consum millorable)';
-            } else if (totalKwhDaily < 22.0) {
-                badge.classList.add('badge-F');
-                badge.textContent = 'Classe F (Alt consum)';
-            } else {
-                badge.classList.add('badge-G');
-                badge.textContent = 'Classe G (Consum ineficient)';
-            }
+            document.getElementById('tot-factura').textContent = facturaTotal.toFixed(2) + ' €';
         }
 
-        // Executar càlcul inicial
-        calculateEnergy();
+        // Executar càrrega inicial de resultats
+        calcularPreuTotal();
     </script>
 </body>
 </html>
